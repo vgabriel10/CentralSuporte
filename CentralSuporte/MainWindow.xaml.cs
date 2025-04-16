@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using CentralSuporte.Entities;
+using CentralSuporte.Persistence.Data;
+using CentralSuporte.Repository;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,8 +19,24 @@ namespace CentralSuporte;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private IUsuarioRepository _usuarioRepository;
     public MainWindow()
     {
         InitializeComponent();
+
+        var context = new CentralSuporteDbContext("mongodb://localhost:27017", "CentralSuporte");
+        _usuarioRepository = new UsuarioRepository(context);
+    }
+
+    private async void Button_Click(object sender, RoutedEventArgs e)
+    {
+        string nome = txtNome.Text;
+        var usuario = new Usuario
+        {
+            Nome = nome
+        };
+        await _usuarioRepository.AdicionarUsuarioAsync(usuario);
+        MessageBox.Show("Cadastrado com sucesso!", "Ok", MessageBoxButton.OK, MessageBoxImage.Warning);
+
     }
 }
