@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CentralSuporte.Entities
 {
-    class Usuario
+    public class Usuario
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

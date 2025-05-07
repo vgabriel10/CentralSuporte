@@ -19,13 +19,13 @@ namespace CentralSuporte;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private IUsuarioRepository _usuarioRepository;
-    public MainWindow()
+    private readonly IUsuarioRepository _usuarioRepository;
+    public MainWindow(IUsuarioRepository usuarioRepository)
     {
         InitializeComponent();
 
-        var context = new CentralSuporteDbContext("mongodb://localhost:27017", "CentralSuporte");
-        _usuarioRepository = new UsuarioRepository(context);
+        //var context = new CentralSuporteDbContext("mongodb://localhost:27017", "CentralSuporte");
+        _usuarioRepository = usuarioRepository;
     }
 
     private async void Button_Click(object sender, RoutedEventArgs e)

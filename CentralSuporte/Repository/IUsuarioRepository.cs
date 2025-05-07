@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CentralSuporte.Repository
 {
-    interface IUsuarioRepository
+    public interface IUsuarioRepository
     {
-        Task<List<Usuario>> ObterTodosAsync();
-        Task AdicionarUsuarioAsync(Usuario usuario);
+        public Task<List<Usuario>> ObterTodosAsync();
+        public Task AdicionarUsuarioAsync(Usuario usuario);
     }
 }
