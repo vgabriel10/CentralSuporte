@@ -1,0 +1,22 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CentralSuporte.Views"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="CentralSuporte.Views.AbrirChamado"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AbrirChamado">
+
+    <Grid>
+        <ui:Card Content="Card" HorizontalAlignment="Left" Margin="165,165,0,0" VerticalAlignment="Top"/>
+        <ui:CardAction Content="CardAction" HorizontalAlignment="Left" Margin="316,127,0,0" VerticalAlignment="Top"/>
+        <ui:RatingControl Content="RatingControl" Margin="260,295,0,0" VerticalAlignment="Top"/>
+        <ui:ThumbRate HorizontalAlignment="Left" Margin="490,295,0,0" VerticalAlignment="Top"/>
+        <ui:TextBlock HorizontalAlignment="Left" Margin="155,335,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <ui:Button Content="Button" Margin="135,275,0,0" VerticalAlignment="Top"/>
+        <ui:ProgressRing HorizontalAlignment="Left" Margin="595,190,0,0" VerticalAlignment="Top"/>
+        <ui:NavigationView HorizontalAlignment="Left" Margin="-4,-5,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Page>
