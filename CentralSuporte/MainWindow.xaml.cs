@@ -2,6 +2,7 @@
 using CentralSuporte.Models.ViewModels;
 using CentralSuporte.Persistence.Data;
 using CentralSuporte.Repository;
+using CentralSuporte.Views;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
@@ -52,6 +53,10 @@ public partial class MainWindow : Window
         //    Nome = nome
         //};
         //await _usuarioRepository.AdicionarUsuarioAsync(usuario);
+
+        var login = new Login();
+        login.Show();
+
         MessageBox.Show("Cadastrado com sucesso!", "Ok", MessageBoxButton.OK, MessageBoxImage.Warning);
 
     }

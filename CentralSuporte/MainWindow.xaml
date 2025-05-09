@@ -23,7 +23,7 @@
                 </TransformGroup>
             </ui:NavigationView.RenderTransform>
         </ui:NavigationView>
-        <Button Width="75" Height="34" Margin="10,110,0,0" VerticalAlignment="Top">
+        <Button Width="75" Height="34" Margin="10,110,0,0" VerticalAlignment="Top" Click="Button_Click">
             <TextBlock Text="Abrir chamado" FontSize="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Button>
         <DataGrid x:Name="dataGridChamados" Grid.ColumnSpan="2" Margin="135,34,165,30"/>
