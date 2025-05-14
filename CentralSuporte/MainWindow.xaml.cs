@@ -48,11 +48,11 @@ public partial class MainWindow : Window
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
         //string nome = txtNome.Text;
-        //var usuario = new Usuario
-        //{
-        //    Nome = nome
-        //};
-        //await _usuarioRepository.AdicionarUsuarioAsync(usuario);
+        var usuario = new Usuario
+        {
+            Nome = "Teste docker 3"
+        };
+        await _usuarioRepository.AdicionarUsuarioAsync(usuario);
 
         var login = new Login();
         login.Show();

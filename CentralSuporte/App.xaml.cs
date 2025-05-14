@@ -28,7 +28,7 @@ public partial class App : Application
     {
         services.AddSingleton<CentralSuporteDbContext>(provider =>
         {
-            var connectionString = "mongodb://localhost:27017";
+            var connectionString = "mongodb://localhost:27018";
             var databaseName = "CentralSuporte";
             return new CentralSuporteDbContext(connectionString, databaseName);
         });
