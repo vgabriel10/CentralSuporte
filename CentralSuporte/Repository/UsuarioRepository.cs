@@ -1,11 +1,8 @@
 ﻿using CentralSuporte.Entities;
 using CentralSuporte.Persistence.Data;
+using CentralSuporte.Repository.Interface;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CentralSuporte.Repository
 {
@@ -21,6 +18,12 @@ namespace CentralSuporte.Repository
         public async Task AdicionarUsuarioAsync(Usuario usuario)
         {
             await _usuario.InsertOneAsync(usuario);
+        }
+
+        public async Task<bool> FazerLogin(Usuario usuario)
+        {
+            var existeUsuario = await _usuario.FindAsync(u => u.Nome == usuario.Nome && u.Senha == usuario.Senha);
+            return existeUsuario != null ? true : false;
         }
 
         public async Task<List<Usuario>> ObterTodosAsync()

@@ -1,12 +1,16 @@
 ﻿
 
 using CentralSuporte.Enums;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
 
 namespace CentralSuporte.Entities
 {
     public class Chamado
     {
-        public int Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public string Cargo { get; set; }

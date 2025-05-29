@@ -2,6 +2,7 @@
 using CentralSuporte.Models.ViewModels;
 using CentralSuporte.Persistence.Data;
 using CentralSuporte.Repository;
+using CentralSuporte.Repository.Interface;
 using CentralSuporte.Views;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -32,32 +33,22 @@ public partial class MainWindow : Window
         //var context = new CentralSuporteDbContext("mongodb://localhost:27017", "CentralSuporte");
         _usuarioRepository = usuarioRepository;
 
+        //main.Content = new Login(_usuarioRepository);
+        //main.Content = new CadastrarNovoUsuario();
+        main.Content = new VisualizarChamados();
+
         // Preenche com alguns dados de exemplo
-        Chamados = new ObservableCollection<ChamadoViewModel>
-            {
-                new ChamadoViewModel {Titulo = "Erro ao abrir aplicativo" },
-                new ChamadoViewModel { Titulo = "Sistema lento"},
-                new ChamadoViewModel { Titulo = "Falha na exportação" }
-            };
-
-        // Vincula ao DataGrid
-        dataGridChamados.ItemsSource = Chamados;
-
+        //Chamados = new ObservableCollection<ChamadoViewModel>
+        //    {
+        //        new ChamadoViewModel {Titulo = "Erro ao abrir aplicativo" },
+        //        new ChamadoViewModel { Titulo = "Sistema lento"},
+        //        new ChamadoViewModel { Titulo = "Falha na exportação" }
+        //    };
     }
 
     private async void Button_Click(object sender, RoutedEventArgs e)
     {
-        //string nome = txtNome.Text;
-        var usuario = new Usuario
-        {
-            Nome = "Teste docker 3"
-        };
-        await _usuarioRepository.AdicionarUsuarioAsync(usuario);
-
-        var login = new Login();
-        login.Show();
-
-        MessageBox.Show("Cadastrado com sucesso!", "Ok", MessageBoxButton.OK, MessageBoxImage.Warning);
+        
 
     }
 

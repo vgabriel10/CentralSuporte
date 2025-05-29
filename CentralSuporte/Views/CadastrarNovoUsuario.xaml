@@ -1,0 +1,24 @@
+﻿<Page x:Class="CentralSuporte.Views.CadastrarNovoUsuario"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CentralSuporte.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CadastrarNovoUsuario">
+
+    <Grid>
+        <StackPanel Margin="100">
+            <Label Content="Nome:" />
+            <TextBox x:Name="txtNomeUsuario" Text="{Binding Usuario.Nome}" Height="40" />
+
+            <Label Content="Senha:" />
+            <TextBox x:Name="txtSenha" Text="{Binding Usuario.Senha}" Height="40" />
+
+            <Button x:Name="btnCadastrarUsuario" Content="Cadastrar Usuário" HorizontalAlignment="Center" Margin="0,10,0,0" Click="btnCadastrarUsuario_Click"/>
+
+        </StackPanel>
+        
+    </Grid>
+</Page>

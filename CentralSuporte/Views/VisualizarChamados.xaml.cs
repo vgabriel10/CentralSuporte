@@ -1,5 +1,4 @@
-﻿using CentralSuporte.Repository;
-using CentralSuporte.Repository.Interface;
+﻿using CentralSuporte.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CentralSuporte.Views
 {
     /// <summary>
-    /// Lógica interna para Login.xaml
+    /// Interação lógica para VisualizarChamados.xam
     /// </summary>
-    public partial class Login : Page
+    public partial class VisualizarChamados : Page
     {
-        private readonly IUsuarioRepository _usuarioRepository;
-        public Login(IUsuarioRepository usuarioRepository)
+        public VisualizarChamados()
         {
             InitializeComponent();
-        }
-
-        private async void btnEntrar_Click(object sender, RoutedEventArgs e)
-        {
-            var usuarios = await _usuarioRepository.ObterTodosAsync();
+            DataContext = new ChamadoViewModel();
         }
     }
 }

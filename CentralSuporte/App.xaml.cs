@@ -1,5 +1,6 @@
 ﻿using CentralSuporte.Persistence.Data;
 using CentralSuporte.Repository;
+using CentralSuporte.Repository.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;

@@ -1,13 +1,8 @@
 ﻿using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CentralSuporte.Persistence.Data
 {
-    class CentralSuporteDbContext
+    public class CentralSuporteDbContext
     {
         private readonly IMongoDatabase _database;
 

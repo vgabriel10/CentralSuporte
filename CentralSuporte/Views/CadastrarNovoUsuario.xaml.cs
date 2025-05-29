@@ -1,6 +1,4 @@
-﻿using CentralSuporte.Repository;
-using CentralSuporte.Repository.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,24 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CentralSuporte.Views
 {
     /// <summary>
-    /// Lógica interna para Login.xaml
+    /// Interação lógica para CadastrarNovoUsuario.xam
     /// </summary>
-    public partial class Login : Page
+    public partial class CadastrarNovoUsuario : Page
     {
-        private readonly IUsuarioRepository _usuarioRepository;
-        public Login(IUsuarioRepository usuarioRepository)
+        
+        public CadastrarNovoUsuario()
         {
             InitializeComponent();
         }
 
-        private async void btnEntrar_Click(object sender, RoutedEventArgs e)
+        private void btnCadastrarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            var usuarios = await _usuarioRepository.ObterTodosAsync();
+
         }
     }
 }

@@ -6,33 +6,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:tray="http://schemas.lepo.co/wpfui/2022/xaml/tray"
-        Title="MainWindow" Height="350" Width="785">
-    <Grid Margin="-5,0,40,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65*"/>
-            <ColumnDefinition Width="41*"/>
-        </Grid.ColumnDefinitions>
+        Title="MainWindow" Height="350" Width="785"
+        WindowStartupLocation="CenterScreen">
 
-        <ui:NavigationView HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Width="89" Height="333">
-            <ui:NavigationView.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="0.17"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="0.489"/>
-                </TransformGroup>
-            </ui:NavigationView.RenderTransform>
-        </ui:NavigationView>
-        <Button Width="75" Height="34" Margin="10,110,0,0" VerticalAlignment="Top" Click="Button_Click">
-            <TextBlock Text="Abrir chamado" FontSize="8" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        </Button>
-        <DataGrid x:Name="dataGridChamados" Grid.ColumnSpan="2" Margin="135,34,165,30"/>
-
-
-
-
-
-
-    </Grid>
+    <StackPanel>
+        <Frame x:Name="main" NavigationUIVisibility="Hidden">
+            
+        </Frame>
+    </StackPanel>
 
 </Window>

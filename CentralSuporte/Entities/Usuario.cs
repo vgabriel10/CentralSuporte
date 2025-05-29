@@ -16,6 +16,8 @@ namespace CentralSuporte.Entities
 
         [BsonElement("nome")]
         public string Nome { get; set; } = string.Empty;
+        [BsonElement("senha")]
+        public string Senha { get; set; } = string.Empty;
 
         //[BsonElement("preco")]
         //public double Preco { get; set; }
