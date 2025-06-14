@@ -1,5 +1,6 @@
 ﻿using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
+using CentralSuporte.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,15 @@ namespace CentralSuporte.Views
     /// </summary>
     public partial class Login : Page
     {
-        private readonly IUsuarioRepository _usuarioRepository;
-        public Login(IUsuarioRepository usuarioRepository)
+        public Login()
         {
             InitializeComponent();
+            DataContext = new UsuarioViewModel();
         }
 
         private async void btnEntrar_Click(object sender, RoutedEventArgs e)
         {
-            var usuarios = await _usuarioRepository.ObterTodosAsync();
+            //var usuarios = await _usuarioRepository.ObterTodosAsync();
         }
     }
 }

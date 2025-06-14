@@ -33,9 +33,9 @@ public partial class MainWindow : Window
         //var context = new CentralSuporteDbContext("mongodb://localhost:27017", "CentralSuporte");
         _usuarioRepository = usuarioRepository;
 
-        //main.Content = new Login(_usuarioRepository);
+        main.Content = new Login();
         //main.Content = new CadastrarNovoUsuario();
-        main.Content = new VisualizarChamados();
+        //main.Content = new VisualizarChamados();
 
         // Preenche com alguns dados de exemplo
         //Chamados = new ObservableCollection<ChamadoViewModel>

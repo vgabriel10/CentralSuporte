@@ -5,11 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CentralSuporte.Views"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="CentralSuporte.Views.Login"
+        xmlns:helpers="clr-namespace:CentralSuporte.Helpers"
+
         mc:Ignorable="d"
         Title="Login" Height="450" Width="800">
     <Grid Cursor="IBeam">
 
-        <TextBox x:Name="txtUsuario" Text="" Margin="255,199,345,150"/>
+        <StackPanel>
+        
+            <StackPanel Margin="100">
+                <Label Content="Nome:" />
+                <TextBox x:Name="txtNomeUsuario" Text="{Binding Nome}" Height="40" />
+
+                <Label Content="Senha:" />
+                <PasswordBox
+                    Height="40"
+                    helpers:PasswordBoxHelper.BoundPassword="{Binding Senha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <!--<ui:PasswordBox x:Name="txtSenha" Text="{Binding Senha}" Height="40" helpers:PasswordBoxHelper.BoundPassword="{Binding Senha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
+
+                <Button x:Name="btnCadastrarUsuario" Content="Entrar" Command="{Binding FazerLoginCommand}" HorizontalAlignment="Center" Margin="0,10,0,0" />
+
+            </StackPanel>
+
+            <StackPanel Margin="0,0,0,0">
+                <Button x:Name="btnCriarConta" Content="Criar conta" HorizontalAlignment="Center" Margin="15,0,510,0"/>
+            </StackPanel>
+
+        </StackPanel>
+        
+        
+
+        <!--<TextBox x:Name="txtUsuario" Text="" Margin="255,199,345,150"/>
 
         <ui:PasswordBox x:Name="txtSenha" Margin="255,316,345,0" TextWrapping="Wrap" Text="" RenderTransformOrigin="0.5,0.5" Cursor="IBeam" VerticalAlignment="Top" Height="45">
             <ui:PasswordBox.RenderTransform>
@@ -21,7 +47,7 @@
                 </TransformGroup>
             </ui:PasswordBox.RenderTransform>
         </ui:PasswordBox>
-        <!--<ui:TextBox Margin="285,204,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="147" Height="35" BorderBrush="Black" Cursor="IBeam" Background="#B3FFFFFF" HorizontalAlignment="Left"/>-->
+        --><!--<ui:TextBox Margin="285,204,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="147" Height="35" BorderBrush="Black" Cursor="IBeam" Background="#B3FFFFFF" HorizontalAlignment="Left"/>--><!--
 
 
 
@@ -29,7 +55,7 @@
         <Ellipse HorizontalAlignment="Left" Height="100" Margin="305,69,0,0" Stroke="Black" VerticalAlignment="Top" Width="100"/>
         <Label Content="Usuário" HorizontalAlignment="Left" Margin="330,179,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.381,0.886" Background="#00000000" Foreground="#FF0C0B0B"/>
         <Label Content="Senha" HorizontalAlignment="Left" Margin="330,295,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.381,0.886" Cursor="IBeam" Foreground="Black"/>
-        <ui:Button x:Name="btnEntrar" Content="Entrar" Margin="319,379,0,0" VerticalAlignment="Top" Click="btnEntrar_Click"/>
+        <ui:Button x:Name="btnEntrar" Content="Entrar" Margin="319,379,0,0" VerticalAlignment="Top" Click="btnEntrar_Click"/>-->
 
     </Grid>
 </Page>
