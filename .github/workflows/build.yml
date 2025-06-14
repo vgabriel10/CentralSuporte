@@ -9,16 +9,9 @@ jobs:
   build:
     runs-on: windows-latest
 
-    services:
-      mongo:
-        image: mongo:latest
-        ports:
-          - 27018:27017
-        options: --name mongodb
-
     steps:
       - name: Checkout código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Instalar Inno Setup
         run: |
