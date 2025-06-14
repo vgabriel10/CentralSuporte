@@ -13,9 +13,11 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.3
+
       - name: Instalar Inno Setup
-        run: |
-          choco install innosetup --yes
+        run: choco install innosetup --yes
         shell: powershell
 
       - name: Restaurar pacotes NuGet
