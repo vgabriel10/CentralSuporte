@@ -1,0 +1,41 @@
+name: Build WPF + InnoSetup
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27018:27017
+        options: --name mongodb
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Instalar Inno Setup
+        run: |
+          choco install innosetup --yes
+        shell: powershell
+
+      - name: Restaurar pacotes NuGet
+        run: nuget restore CentralSuporte.sln
+
+      - name: Build do projeto
+        run: msbuild CentralSuporte.sln /p:Configuration=Release
+
+      - name: Gerar instalador com Inno Setup
+        run: '"C:\\Program Files (x86)\\Inno Setup 6\\ISCC.exe" instalador\\setup.iss'
+
+      - name: Upload do instalador como artefato
+        uses: actions/upload-artifact@v3
+        with:
+          name: Instalador
+          path: instalador\Output\CentralSuporteSetup.exe
