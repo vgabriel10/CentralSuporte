@@ -1,11 +1,10 @@
 ﻿
 
-using CentralSuporte.Entities;
-using CentralSuporte.Models.ViewModels;
-using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
+using CentralSuporte.Repository;
 using CentralSuporte.ViewModels;
-using System.Windows.Input;
+using CentralSuporte.Entities;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace CentralSuporte.Commands.UsuarioCommands
 {
@@ -19,22 +18,19 @@ namespace CentralSuporte.Commands.UsuarioCommands
             _viewModel = usuarioViewModel;
             _UsuarioRepository = new UsuarioRepository();
         }
-
-        //public override bool CanExecute(object? parameter)
-        //{
-        //    return !string.IsNullOrEmpty(_viewModel.Nome) && !string.IsNullOrEmpty(_viewModel.Senha);
-
-        //}
-
-        public override void Execute(object parameter)
+        public async override void Execute(object parameter)
         {
-            Usuario usuario = new Usuario
-            {
-                Nome = _viewModel.Nome,
-                Senha = _viewModel.Senha
-            };
+            //var usuario = new Usuario
+            //{
+            //    Nome = _viewModel.Nome,
+            //    Senha = _viewModel.Senha
+            //};
 
-            _UsuarioRepository.AdicionarUsuarioAsync(usuario);
+            ////Como faço para retornar se o usuário fez o login certo 
+            //await _UsuarioRepository.FazerLogin(usuario);
+
+            _viewModel.FazerLogin();
+
         }
     }
 }

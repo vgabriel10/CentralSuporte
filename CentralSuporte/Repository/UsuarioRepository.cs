@@ -25,8 +25,9 @@ namespace CentralSuporte.Repository
 
         public async Task<bool> FazerLogin(Usuario usuario)
         {
-            var existeUsuario = await _usuario.FindAsync(u => u.Nome == usuario.Nome && u.Senha == usuario.Senha);
-            return existeUsuario != null ? true : false;
+            var filtro = Builders<Usuario>.Filter.Where(u => u.Nome == usuario.Nome && u.Senha == usuario.Senha);
+            var existeUsuario = await _usuario.Find(filtro).FirstOrDefaultAsync();
+            return existeUsuario != null;
         }
 
         public async Task<List<Usuario>> ObterTodosAsync()

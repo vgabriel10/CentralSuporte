@@ -2,15 +2,24 @@
 
 using CentralSuporte.Commands.ChamadoCommands;
 using CentralSuporte.Commands.UsuarioCommands;
+using CentralSuporte.Entities;
+using CentralSuporte.Repository;
+using CentralSuporte.Repository.Interface;
+using CentralSuporte.Views;
 using System.ComponentModel;
+using System.Windows;
 
 namespace CentralSuporte.ViewModels
 {
     public class UsuarioViewModel : BaseViewModel
     {
+        public CriarUsuarioCommand CriarUsuarioCommand { get; }
         public FazerLoginCommand FazerLoginCommand { get; }
+        private readonly IUsuarioRepository _usuarioRepository;
         public UsuarioViewModel()
         {
+            _usuarioRepository = new UsuarioRepository();
+            CriarUsuarioCommand = new CriarUsuarioCommand(this);
             FazerLoginCommand = new FazerLoginCommand(this);
         }
         private string _nome;
@@ -40,6 +49,27 @@ namespace CentralSuporte.ViewModels
                     OnPropertyChanged(nameof(Senha));
                     //FazerLoginCommand.RaiseCanExecuteChanged();
                 }
+            }
+        }
+
+
+        public async void FazerLogin()
+        {
+            var usuario = new Usuario
+            {
+                Nome = this.Nome,
+                Senha = this.Senha
+            };
+
+            bool sucesso = await _usuarioRepository.FazerLogin(usuario);
+
+            if (sucesso)
+            {
+                MainWindow.Navegador.NavegarPara(new VisualizarChamados());
+            }
+            else
+            {
+                MessageBox.Show("Usuário ou senha inválidos","Atenção!");
             }
         }
 

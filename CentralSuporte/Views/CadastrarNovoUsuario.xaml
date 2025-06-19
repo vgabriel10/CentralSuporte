@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CentralSuporte.Views"
+      xmlns:helpers="clr-namespace:CentralSuporte.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CadastrarNovoUsuario">
@@ -14,9 +15,11 @@
             <TextBox x:Name="txtNomeUsuario" Text="{Binding Usuario.Nome}" Height="40" />
 
             <Label Content="Senha:" />
-            <TextBox x:Name="txtSenha" Text="{Binding Usuario.Senha}" Height="40" />
+            <PasswordBox
+            Height="40"
+            helpers:PasswordBoxHelper.BoundPassword="{Binding Senha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <Button x:Name="btnCadastrarUsuario" Content="Cadastrar Usuário" HorizontalAlignment="Center" Margin="0,10,0,0" Click="btnCadastrarUsuario_Click"/>
+            <Button x:Name="btnCadastrarUsuario" Content="Cadastrar Usuário" HorizontalAlignment="Center" Margin="0,10,0,0" Command="{Binding CriarUsuarioCommand}" />
 
         </StackPanel>
         

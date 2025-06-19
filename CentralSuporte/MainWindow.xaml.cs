@@ -3,6 +3,7 @@ using CentralSuporte.Models.ViewModels;
 using CentralSuporte.Persistence.Data;
 using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
+using CentralSuporte.Service;
 using CentralSuporte.Views;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NavigationService = CentralSuporte.Service.NavigationService;
 
 namespace CentralSuporte;
 
@@ -23,27 +25,16 @@ namespace CentralSuporte;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private readonly IUsuarioRepository _usuarioRepository;
+    public static INavigationService Navegador;
     public ObservableCollection<ChamadoViewModel> Chamados { get; set; }
 
     public MainWindow(IUsuarioRepository usuarioRepository)
     {
         InitializeComponent();
 
-        //var context = new CentralSuporteDbContext("mongodb://localhost:27017", "CentralSuporte");
-        _usuarioRepository = usuarioRepository;
-
+        Navegador = new NavigationService(main); // ⬅️ aqui está a mudança
         main.Content = new Login();
-        //main.Content = new CadastrarNovoUsuario();
-        //main.Content = new VisualizarChamados();
 
-        // Preenche com alguns dados de exemplo
-        //Chamados = new ObservableCollection<ChamadoViewModel>
-        //    {
-        //        new ChamadoViewModel {Titulo = "Erro ao abrir aplicativo" },
-        //        new ChamadoViewModel { Titulo = "Sistema lento"},
-        //        new ChamadoViewModel { Titulo = "Falha na exportação" }
-        //    };
     }
 
     private async void Button_Click(object sender, RoutedEventArgs e)
