@@ -4,6 +4,7 @@ using CentralSuporte.Entities;
 using CentralSuporte.Enums;
 using CentralSuporte.Repository.Interface;
 using CentralSuporte.ViewModels;
+using CentralSuporte.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -13,6 +14,7 @@ namespace CentralSuporte.Models.ViewModels
     {
         public ObservableCollection<Chamado> Chamados { get; set; }
         public AbrirChamadoCommand AbrirChamadoCommand { get; }
+        public AbrirTelaCriarNovoChamadoCommand AbrirTelaCriarNovoChamadoCommand { get; }
         private readonly IChamadoRepository _chamadoRepository;
 
         public ChamadoViewModel()
@@ -53,7 +55,7 @@ namespace CentralSuporte.Models.ViewModels
             });
 
             AbrirChamadoCommand = new AbrirChamadoCommand(this);
-            //_chamadoRepository = new ChamadoRepository();
+            AbrirTelaCriarNovoChamadoCommand = new AbrirTelaCriarNovoChamadoCommand(this);
         }
 
 
@@ -155,6 +157,37 @@ namespace CentralSuporte.Models.ViewModels
                 _dataFechamento = value;
                 OnPropertyChanged(nameof(DataFechamento));
             }
+        }
+
+        public void AbrirTelaCriarNovoChamado()
+        {
+            MainWindow.Navegador.NavegarPara(new AbrirChamado());
+        }
+
+        public void AbrirNovoChamado(ChamadoViewModel chamado)
+        {
+            var novoChamado = new Chamado
+            {
+                Titulo = chamado.Titulo,
+                Descricao = chamado.Descricao,
+                Cargo = chamado.Cargo,
+                Prioridade = chamado.Prioridade,
+                Status = chamado.Status,
+                Responsavel = chamado.Responsavel,
+                DataAbertura = chamado.DataAbertura,
+                DataFechamento = chamado.DataFechamento
+            };
+
+            chamado.Chamados.Add(novoChamado);
+
+            _chamadoRepository.AbrirChamadoAsync(novoChamado);
+
+            // Limpa os campos
+            chamado.Titulo = string.Empty;
+            chamado .Descricao = string.Empty;
+            chamado.Cargo = string.Empty;
+            chamado.Responsavel = string.Empty;
+            chamado.DataFechamento = null;
         }
 
     }

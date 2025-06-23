@@ -10,19 +10,14 @@
 
     <Grid>
 
+        <StackPanel Margin="0,10,0,0">
+            <Button  Content="Abrir chamado" IsEnabled="True"  Command="{Binding AbrirTelaCriarNovoChamadoCommand}" />
+        </StackPanel>
         <StackPanel>
-            
-        
-            <StackPanel Margin="10">
-                <DataGrid  x:Name="dgvChamados" HorizontalAlignment="Center" ItemsSource="{Binding Chamados}"/>
-            </StackPanel>
 
-            <StackPanel Margin="0,170,0,0">
-                <Button  Content="Abrir chamado" IsEnabled="True"  Command="{Binding AbrirChamadoCommand}" />
-                <TextBox Text="{Binding Titulo, UpdateSourceTrigger=PropertyChanged}" Margin="0 5"/>
-                <TextBox Text="{Binding Descricao, UpdateSourceTrigger=PropertyChanged}" Margin="0 5"/>
-                <TextBox Text="{Binding Cargo, UpdateSourceTrigger=PropertyChanged}"  Margin="0 5"/>
-                <TextBox Text="{Binding Responsavel, UpdateSourceTrigger=PropertyChanged}"  Margin="0 5"/>
+
+            <StackPanel Margin="0,50,0,0">
+                <DataGrid  x:Name="dgvChamados" HorizontalAlignment="Center" ItemsSource="{Binding Chamados}"/>
             </StackPanel>
 
         </StackPanel>

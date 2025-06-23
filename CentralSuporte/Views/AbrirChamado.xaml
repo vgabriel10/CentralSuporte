@@ -10,13 +10,17 @@
       Title="AbrirChamado">
 
     <Grid>
-        <ui:Card Content="Card" HorizontalAlignment="Left" Margin="165,165,0,0" VerticalAlignment="Top"/>
-        <ui:CardAction Content="CardAction" HorizontalAlignment="Left" Margin="316,127,0,0" VerticalAlignment="Top"/>
-        <ui:RatingControl Content="RatingControl" Margin="260,295,0,0" VerticalAlignment="Top"/>
-        <ui:ThumbRate HorizontalAlignment="Left" Margin="490,295,0,0" VerticalAlignment="Top"/>
-        <ui:TextBlock HorizontalAlignment="Left" Margin="155,335,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-        <ui:Button Content="Button" Margin="135,275,0,0" VerticalAlignment="Top"/>
-        <ui:ProgressRing HorizontalAlignment="Left" Margin="595,190,0,0" VerticalAlignment="Top"/>
-        <ui:NavigationView HorizontalAlignment="Left" Margin="-4,-5,0,0" VerticalAlignment="Top"/>
+        <StackPanel Margin="0,10,0,0">
+            <!--<Button  Content="Abrir chamado" IsEnabled="True"  Command="{Binding AbrirChamadoCommand}" />-->
+            <Label Content="Título:"/>
+            <TextBox Text="{Binding Titulo, UpdateSourceTrigger=PropertyChanged}" Margin="0 5"/>
+            <Label Content="Descrição:"/>
+            <TextBox Text="{Binding Descricao, UpdateSourceTrigger=PropertyChanged}" Margin="0 5"/>
+            <Label Content="Cargo:"/>
+            <TextBox Text="{Binding Cargo, UpdateSourceTrigger=PropertyChanged}"  Margin="0 5"/>
+            <Label Content="Responsável:"/>
+            <TextBox Text="{Binding Responsavel, UpdateSourceTrigger=PropertyChanged}"  Margin="0 5"/>
+            <Button  Content="Abrir chamado" IsEnabled="True"  Command="{Binding AbrirChamadoCommand}" />
+        </StackPanel>
     </Grid>
 </Page>
