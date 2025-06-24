@@ -2,6 +2,7 @@
 using CentralSuporte.Commands.ChamadoCommands;
 using CentralSuporte.Entities;
 using CentralSuporte.Enums;
+using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
 using CentralSuporte.ViewModels;
 using CentralSuporte.Views;
@@ -20,42 +21,44 @@ namespace CentralSuporte.Models.ViewModels
         public ChamadoViewModel()
         {
             Chamados = new ObservableCollection<Chamado>();
-            Chamados.Add(new Chamado
-            {
-                Titulo = "Erro ao acessar o sistema",
-                Descricao = "Usuário relata que não consegue acessar o sistema após a última atualização.",
-                Cargo = "Analista de Suporte",
-                Prioridade = Prioridade.Alta, // Supondo que Prioridade é um enum
-                Status = Status.Aberto,       // Supondo que Status é um enum
-                Responsavel = "João Silva",
-                DataAbertura = new DateTime(2025, 5, 23, 10, 30, 0),
-                DataFechamento = null
-            });
-            Chamados.Add(new Chamado
-            {
-                Titulo = "Erro ao acessar o sistema",
-                Descricao = "Usuário relata que não consegue acessar o sistema após a última atualização.",
-                Cargo = "Analista de Suporte",
-                Prioridade = Prioridade.Alta, // Supondo que Prioridade é um enum
-                Status = Status.Aberto,       // Supondo que Status é um enum
-                Responsavel = "João Silva",
-                DataAbertura = new DateTime(2025, 5, 23, 10, 30, 0),
-                DataFechamento = null
-            });
-            Chamados.Add(new Chamado
-            {
-                Titulo = "Erro ao acessar o sistema",
-                Descricao = "Usuário relata que não consegue acessar o sistema após a última atualização.",
-                Cargo = "Analista de Suporte",
-                Prioridade = Prioridade.Alta, // Supondo que Prioridade é um enum
-                Status = Status.Aberto,       // Supondo que Status é um enum
-                Responsavel = "João Silva",
-                DataAbertura = new DateTime(2025, 5, 23, 10, 30, 0),
-                DataFechamento = null
-            });
+            //Chamados.Add(new Chamado
+            //{
+            //    Titulo = "Erro ao acessar o sistema",
+            //    Descricao = "Usuário relata que não consegue acessar o sistema após a última atualização.",
+            //    Cargo = "Analista de Suporte",
+            //    Prioridade = Prioridade.Alta, // Supondo que Prioridade é um enum
+            //    Status = Status.Aberto,       // Supondo que Status é um enum
+            //    Responsavel = "João Silva",
+            //    DataAbertura = new DateTime(2025, 5, 23, 10, 30, 0),
+            //    DataFechamento = null
+            //});
+            //Chamados.Add(new Chamado
+            //{
+            //    Titulo = "Erro ao acessar o sistema",
+            //    Descricao = "Usuário relata que não consegue acessar o sistema após a última atualização.",
+            //    Cargo = "Analista de Suporte",
+            //    Prioridade = Prioridade.Alta, // Supondo que Prioridade é um enum
+            //    Status = Status.Aberto,       // Supondo que Status é um enum
+            //    Responsavel = "João Silva",
+            //    DataAbertura = new DateTime(2025, 5, 23, 10, 30, 0),
+            //    DataFechamento = null
+            //});
+            //Chamados.Add(new Chamado
+            //{
+            //    Titulo = "Erro ao acessar o sistema",
+            //    Descricao = "Usuário relata que não consegue acessar o sistema após a última atualização.",
+            //    Cargo = "Analista de Suporte",
+            //    Prioridade = Prioridade.Alta, // Supondo que Prioridade é um enum
+            //    Status = Status.Aberto,       // Supondo que Status é um enum
+            //    Responsavel = "João Silva",
+            //    DataAbertura = new DateTime(2025, 5, 23, 10, 30, 0),
+            //    DataFechamento = null
+            //});
 
             AbrirChamadoCommand = new AbrirChamadoCommand(this);
             AbrirTelaCriarNovoChamadoCommand = new AbrirTelaCriarNovoChamadoCommand(this);
+            _chamadoRepository = new ChamadoRepository();
+            CarregarTodosChamados();
         }
 
 
@@ -164,6 +167,13 @@ namespace CentralSuporte.Models.ViewModels
             MainWindow.Navegador.NavegarPara(new AbrirChamado());
         }
 
+        private async Task CarregarTodosChamados() 
+        {
+            var chamados = await _chamadoRepository.ObterTodosChamadosAsync();
+            Chamados.Clear();
+            chamados.ForEach(c => Chamados.Add(c));
+        }
+
         public void AbrirNovoChamado(ChamadoViewModel chamado)
         {
             var novoChamado = new Chamado
@@ -188,6 +198,8 @@ namespace CentralSuporte.Models.ViewModels
             chamado.Cargo = string.Empty;
             chamado.Responsavel = string.Empty;
             chamado.DataFechamento = null;
+
+            MainWindow.Navegador.NavegarPara(new VisualizarChamados());
         }
 
     }

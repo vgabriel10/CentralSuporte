@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CentralSuporte.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace CentralSuporte.Views
         public AbrirChamado()
         {
             InitializeComponent();
+            DataContext = new ChamadoViewModel();
         }
     }
 }

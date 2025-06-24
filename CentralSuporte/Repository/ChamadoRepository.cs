@@ -23,9 +23,9 @@ namespace CentralSuporte.Repository
             await _chamadoDbContext.InsertOneAsync(chamado);
         }
 
-        public Task<List<Chamado>> ObterTodosChamadosAsync()
+        public async Task<List<Chamado>> ObterTodosChamadosAsync()
         {
-            throw new NotImplementedException();
+            return await _chamadoDbContext.Find(Builders<Chamado>.Filter.Empty).ToListAsync();
         }
     }
 }
