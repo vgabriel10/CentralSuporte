@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CentralSuporte.Enums;
 
 namespace CentralSuporte.Entities
 {
@@ -18,6 +19,8 @@ namespace CentralSuporte.Entities
         public string Nome { get; set; } = string.Empty;
         [BsonElement("senha")]
         public string Senha { get; set; } = string.Empty;
+        [BsonElement("tipoUsuario")]
+        public TipoUsuario TipoUsuario { get; set; }
 
         //[BsonElement("preco")]
         //public double Preco { get; set; }
