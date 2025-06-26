@@ -30,33 +30,9 @@ namespace CentralSuporte.Commands.ChamadoCommands
                 && !string.IsNullOrWhiteSpace(_viewModel.Responsavel);
         }
 
-        public override void Execute(object parameter)
+        public async override void Execute(object parameter)
         {
-            //var novoChamado = new Chamado
-            //{
-            //    Titulo = _viewModel.Titulo,
-            //    Descricao = _viewModel.Descricao,
-            //    Cargo = _viewModel.Cargo,
-            //    Prioridade = _viewModel.Prioridade,
-            //    Status = _viewModel.Status,
-            //    Responsavel = _viewModel.Responsavel,
-            //    DataAbertura = _viewModel.DataAbertura,
-            //    DataFechamento = _viewModel.DataFechamento
-            //};
-
-            //_viewModel.Chamados.Add(novoChamado);
-
-            //_chamadoRepository.AbrirChamadoAsync(novoChamado);
-
-            _viewModel.AbrirNovoChamado(_viewModel);
-
-            // Limpa os campos
-            //_viewModel.Titulo = string.Empty;
-            //_viewModel.Descricao = string.Empty;
-            //_viewModel.Cargo = string.Empty;
-            //_viewModel.Responsavel = string.Empty;
-            //_viewModel.DataFechamento = null;
-
+            await _viewModel.AbrirNovoChamado();
             RaiseCanExecuteChanged();
         }
 

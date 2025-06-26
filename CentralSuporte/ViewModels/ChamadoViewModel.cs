@@ -174,30 +174,30 @@ namespace CentralSuporte.Models.ViewModels
             chamados.ForEach(c => Chamados.Add(c));
         }
 
-        public void AbrirNovoChamado(ChamadoViewModel chamado)
+        public async Task AbrirNovoChamado()
         {
             var novoChamado = new Chamado
             {
-                Titulo = chamado.Titulo,
-                Descricao = chamado.Descricao,
-                Cargo = chamado.Cargo,
-                Prioridade = chamado.Prioridade,
-                Status = chamado.Status,
-                Responsavel = chamado.Responsavel,
-                DataAbertura = chamado.DataAbertura,
-                DataFechamento = chamado.DataFechamento
+                Titulo = this.Titulo,
+                Descricao = this.Descricao,
+                Cargo = this.Cargo,
+                Prioridade = this.Prioridade,
+                Status = this.Status,
+                Responsavel = this.Responsavel,
+                DataAbertura = this.DataAbertura,
+                DataFechamento = this.DataFechamento
             };
 
-            chamado.Chamados.Add(novoChamado);
+            Chamados.Add(novoChamado);
 
-            _chamadoRepository.AbrirChamadoAsync(novoChamado);
+            await _chamadoRepository.AbrirChamadoAsync(novoChamado);
 
             // Limpa os campos
-            chamado.Titulo = string.Empty;
-            chamado .Descricao = string.Empty;
-            chamado.Cargo = string.Empty;
-            chamado.Responsavel = string.Empty;
-            chamado.DataFechamento = null;
+            Titulo = string.Empty;
+            Descricao = string.Empty;
+            Cargo = string.Empty;
+            Responsavel = string.Empty;
+            DataFechamento = null;
 
             MainWindow.Navegador.NavegarPara(new VisualizarChamados());
         }
