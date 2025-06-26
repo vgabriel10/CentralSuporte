@@ -8,12 +8,12 @@
         xmlns:helpers="clr-namespace:CentralSuporte.Helpers"
 
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
+        Title="Login"  MinHeight="700" MinWidth="800">
     <Grid Cursor="IBeam">
 
         <StackPanel>
         
-            <StackPanel Margin="100">
+            <StackPanel Margin="180">
                 <Label Content="Nome:" />
                 <TextBox x:Name="txtNomeUsuario" Text="{Binding Nome}" Height="40" />
 
@@ -27,8 +27,8 @@
 
             </StackPanel>
 
-            <StackPanel Margin="0,0,0,0">
-                <Button x:Name="btnCriarConta" Content="Criar conta" HorizontalAlignment="Center" Margin="15,0,510,0"/>
+            <StackPanel Margin="0,-50,0,0">
+                <Button x:Name="btnCriarConta" Content="Criar conta" Command="{Binding AbrirTelaCriarNovoUsuarioCommand}" HorizontalAlignment="Center" Margin="0,0,510,0"/>
             </StackPanel>
 
         </StackPanel>

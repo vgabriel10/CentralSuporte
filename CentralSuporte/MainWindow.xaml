@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:tray="http://schemas.lepo.co/wpfui/2022/xaml/tray"
-        Title="MainWindow" Height="350" Width="785"
+        Title="MainWindow" MinHeight="500" Width="800"
         WindowStartupLocation="CenterScreen">
 
     <StackPanel>

@@ -15,12 +15,14 @@ namespace CentralSuporte.ViewModels
     {
         public CriarUsuarioCommand CriarUsuarioCommand { get; }
         public FazerLoginCommand FazerLoginCommand { get; }
+        public AbrirTelaCriarNovoUsuarioCommand AbrirTelaCriarNovoUsuarioCommand { get; }
         private readonly IUsuarioRepository _usuarioRepository;
         public UsuarioViewModel()
         {
             _usuarioRepository = new UsuarioRepository();
             CriarUsuarioCommand = new CriarUsuarioCommand(this);
             FazerLoginCommand = new FazerLoginCommand(this);
+            AbrirTelaCriarNovoUsuarioCommand = new AbrirTelaCriarNovoUsuarioCommand();
         }
         private string _nome;
         public string Nome 
@@ -52,6 +54,16 @@ namespace CentralSuporte.ViewModels
             }
         }
 
+        public async void AdicionarUsuario()
+        {
+            Usuario usuario = new Usuario
+            {
+                Nome = this.Nome,
+                Senha = this.Senha
+            };
+
+            await _usuarioRepository.AdicionarUsuarioAsync(usuario);
+        }
 
         public async void FazerLogin()
         {

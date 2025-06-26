@@ -32,7 +32,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        Navegador = new NavigationService(main); // ⬅️ aqui está a mudança
+        Navegador = new NavigationService(main);
         main.Content = new Login();
 
     }
