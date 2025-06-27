@@ -3,6 +3,7 @@
 using CentralSuporte.Commands.ChamadoCommands;
 using CentralSuporte.Commands.UsuarioCommands;
 using CentralSuporte.Entities;
+using CentralSuporte.Enums;
 using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
 using CentralSuporte.Views;
@@ -54,12 +55,30 @@ namespace CentralSuporte.ViewModels
             }
         }
 
+        public IEnumerable<TipoUsuario> TiposUsuarios
+        => Enum.GetValues(typeof(TipoUsuario)).Cast<TipoUsuario>();
+
+        private TipoUsuario _tipoUsuario;
+        public TipoUsuario TipoUsuario
+        {
+            get => _tipoUsuario;
+            set
+            {
+                if (_tipoUsuario != value)
+                {
+                    _tipoUsuario = value;
+                    OnPropertyChanged(nameof(TipoUsuario));
+                }
+            }
+        }
+
         public async void AdicionarUsuario()
         {
             Usuario usuario = new Usuario
             {
                 Nome = this.Nome,
-                Senha = this.Senha
+                Senha = this.Senha,
+                TipoUsuario = this.TipoUsuario
             };
 
             await _usuarioRepository.AdicionarUsuarioAsync(usuario);

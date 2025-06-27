@@ -4,7 +4,7 @@ namespace CentralSuporte.Enums
 {
     public enum TipoUsuario
     {
-        UsuarioDefault,
+        Usuario,
         Suporte,
     }
 }
