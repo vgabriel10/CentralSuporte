@@ -1,32 +1,30 @@
 ﻿
+
 using CentralSuporte.Commands.ChamadoCommands;
 using CentralSuporte.Entities;
 using CentralSuporte.Enums;
-using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
-using CentralSuporte.ViewModels;
-using CentralSuporte.Views;
+using CentralSuporte.Repository;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 
-namespace CentralSuporte.Models.ViewModels
+namespace CentralSuporte.ViewModels
 {
-    public class ChamadoViewModel : BaseViewModel
+    public class GerenciarChamadosViewModel : BaseViewModel
     {
+
         public ObservableCollection<Chamado> Chamados { get; set; }
         public AbrirChamadoCommand AbrirChamadoCommand { get; }
         public AbrirTelaCriarNovoChamadoCommand AbrirTelaCriarNovoChamadoCommand { get; }
         private readonly IChamadoRepository _chamadoRepository;
 
-        public ChamadoViewModel()
+        public GerenciarChamadosViewModel()
         {
             Chamados = new ObservableCollection<Chamado>();
-            AbrirChamadoCommand = new AbrirChamadoCommand(this);
-            AbrirTelaCriarNovoChamadoCommand = new AbrirTelaCriarNovoChamadoCommand(this);
+            //AbrirChamadoCommand = new AbrirChamadoCommand(this);
+            //AbrirTelaCriarNovoChamadoCommand = new AbrirTelaCriarNovoChamadoCommand(this);
             _chamadoRepository = new ChamadoRepository();
             CarregarTodosChamados();
         }
-
 
         private string _titulo;
         public string Titulo
@@ -128,45 +126,11 @@ namespace CentralSuporte.Models.ViewModels
             }
         }
 
-        public void AbrirTelaCriarNovoChamado()
-        {
-            MainWindow.Navegador.NavegarPara(new AbrirChamado());
-        }
-
-        private async Task CarregarTodosChamados() 
+        private async Task CarregarTodosChamados()
         {
             var chamados = await _chamadoRepository.ObterTodosChamadosAsync();
             Chamados.Clear();
             chamados.ForEach(c => Chamados.Add(c));
         }
-
-        public async Task AbrirNovoChamado()
-        {
-            var novoChamado = new Chamado
-            {
-                Titulo = this.Titulo,
-                Descricao = this.Descricao,
-                Cargo = this.Cargo,
-                Prioridade = this.Prioridade,
-                Status = this.Status,
-                Responsavel = this.Responsavel,
-                DataAbertura = this.DataAbertura,
-                DataFechamento = this.DataFechamento
-            };
-
-            Chamados.Add(novoChamado);
-
-            await _chamadoRepository.AbrirChamadoAsync(novoChamado);
-
-            // Limpa os campos
-            Titulo = string.Empty;
-            Descricao = string.Empty;
-            Cargo = string.Empty;
-            Responsavel = string.Empty;
-            DataFechamento = null;
-
-            MainWindow.Navegador.NavegarPara(new VisualizarChamados());
-        }
-
     }
 }

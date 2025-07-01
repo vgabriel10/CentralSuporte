@@ -23,11 +23,11 @@ namespace CentralSuporte.Repository
             await _usuario.InsertOneAsync(usuario);
         }
 
-        public async Task<bool> FazerLogin(Usuario usuario)
+        public async Task<Usuario> FazerLogin(Usuario usuario)
         {
             var filtro = Builders<Usuario>.Filter.Where(u => u.Nome == usuario.Nome && u.Senha == usuario.Senha);
             var existeUsuario = await _usuario.Find(filtro).FirstOrDefaultAsync();
-            return existeUsuario != null;
+            return existeUsuario;
         }
 
         public async Task<List<Usuario>> ObterTodosAsync()

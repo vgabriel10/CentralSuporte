@@ -11,6 +11,6 @@ namespace CentralSuporte.Repository.Interface
     {
         public Task<List<Usuario>> ObterTodosAsync();
         public Task AdicionarUsuarioAsync(Usuario usuario);
-        public Task<bool> FazerLogin(Usuario usuario);
+        public Task<Usuario> FazerLogin(Usuario usuario);
     }
 }

@@ -86,17 +86,25 @@ namespace CentralSuporte.ViewModels
 
         public async void FazerLogin()
         {
-            var usuario = new Usuario
+            var usuarioLogin = new Usuario
             {
                 Nome = this.Nome,
                 Senha = this.Senha
             };
 
-            bool sucesso = await _usuarioRepository.FazerLogin(usuario);
+            var usuario = await _usuarioRepository.FazerLogin(usuarioLogin);
 
-            if (sucesso)
+            if (usuario != null)
             {
-                MainWindow.Navegador.NavegarPara(new VisualizarChamados());
+                switch (usuario.TipoUsuario)
+                {
+                    case TipoUsuario.Usuario:
+                        MainWindow.Navegador.NavegarPara(new VisualizarChamados());
+                        break;
+                    case TipoUsuario.Suporte:
+                        MainWindow.Navegador.NavegarPara(new GerenciarChamado());
+                        break;
+                }                   
             }
             else
             {
