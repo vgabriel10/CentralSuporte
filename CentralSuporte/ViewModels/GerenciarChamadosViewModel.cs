@@ -24,6 +24,7 @@ namespace CentralSuporte.ViewModels
             //AbrirTelaCriarNovoChamadoCommand = new AbrirTelaCriarNovoChamadoCommand(this);
             _chamadoRepository = new ChamadoRepository();
             CarregarTodosChamados();
+            CarregarCbStatus();
         }
 
         private string _titulo;
@@ -78,16 +79,16 @@ namespace CentralSuporte.ViewModels
             }
         }
 
-        private Status _status;
-        public Status Status
-        {
-            get => _status;
-            set
-            {
-                _status = value;
-                OnPropertyChanged(nameof(Status));
-            }
-        }
+        //private Status _status;
+        //public Status Status
+        //{
+        //    get => _status;
+        //    set
+        //    {
+        //        _status = value;
+        //        OnPropertyChanged(nameof(Status));
+        //    }
+        //}
 
         private string _responsavel;
         public string Responsavel
@@ -126,11 +127,66 @@ namespace CentralSuporte.ViewModels
             }
         }
 
+
+        private Status _status;
+        public Status Status
+        {
+            get => _status;
+            set
+            {
+                if (_status != value)
+                {
+                    _status = value;
+                    OnPropertyChanged(nameof(Status));
+                }
+            }
+        }
+
+        //public IEnumerable<Status> CbStatus
+        //=> Enum.GetValues(typeof(Status)).Cast<Status>();
+        public List<string> CbStatus { get; set; }
+
+        private Status? _statusSelecionado;
+        public Status? StatusSelecionado
+        {
+            get => _statusSelecionado;
+            set
+            {
+                if (_statusSelecionado != value)
+                {
+                    _statusSelecionado = value;
+                    OnPropertyChanged(nameof(StatusSelecionado));
+                }
+            }
+        }
+
         private async Task CarregarTodosChamados()
         {
             var chamados = await _chamadoRepository.ObterTodosChamadosAsync();
             Chamados.Clear();
             chamados.ForEach(c => Chamados.Add(c));
+        }
+
+        private async Task CarregarCbStatus()
+        {
+            CbStatus = new List<string>
+            {
+                "Todos",
+                "Aberto",
+                "Em Andamento",
+                "Resolvido",
+                "Cancelado"
+            };
+        }
+
+        private async Task CarregarCbResponsavel()
+        {
+
+        }
+
+        private void AbrirModalVisualizarChamado()
+        {
+
         }
     }
 }

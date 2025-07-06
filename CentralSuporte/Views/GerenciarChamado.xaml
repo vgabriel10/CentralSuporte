@@ -9,18 +9,18 @@
       Title="GerenciarChamado">
 
     <Grid>
-        <Grid Margin="0,0,0,410" Height="20">
+        <Grid Margin="0,0,0,410" Height="40">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="180"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" Content="Responsável" FontSize="12" FontWeight="Black" VerticalAlignment="Center" />
-            <ComboBox Grid.Column="1" Width="100" />
-            <Label Grid.Column="3" Content="Status" FontSize="12" FontWeight="Black" VerticalAlignment="Center" />
-            <ComboBox Grid.Column="4" Width="100" />
+            <Label Grid.Column="0" Width="100" Content="Responsável" FontSize="12" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            <ComboBox Grid.Column="1" Width="160" />
+            <Label Grid.Column="2" Width="100" Content="Status" FontSize="12" FontWeight="Black" VerticalAlignment="Center" />
+            <ComboBox Grid.Column="3" Width="160" ItemsSource="{Binding CbStatus}" SelectedIndex="0" />
         </Grid>
 
 
@@ -33,6 +33,16 @@
                       IsReadOnly="True"
                       Margin="0,50,0,10">
             <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Ações">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Visualizar"
+                            Command="{Binding DataContext.ComandoVisualizar, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                            CommandParameter="{Binding}" 
+                            Padding="5,2"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Título" Binding="{Binding Titulo}"/>
                 <DataGridTextColumn Header="Cargo" Binding="{Binding Cargo}"/>
                 <DataGridTextColumn Header="Prioridade" Binding="{Binding Prioridade}"/>
@@ -43,6 +53,6 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        
+
     </Grid>
 </Page>

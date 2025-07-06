@@ -1,4 +1,5 @@
 ﻿using CentralSuporte.Models.ViewModels;
+using CentralSuporte.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace CentralSuporte.Views
         public GerenciarChamado()
         {
             InitializeComponent();
-            DataContext = new ChamadoViewModel();
+            DataContext = new GerenciarChamadosViewModel();
         }
     }
 }
