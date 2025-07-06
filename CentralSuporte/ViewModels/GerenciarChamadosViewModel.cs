@@ -15,6 +15,7 @@ namespace CentralSuporte.ViewModels
         public ObservableCollection<Chamado> Chamados { get; set; }
         public AbrirChamadoCommand AbrirChamadoCommand { get; }
         public AbrirTelaCriarNovoChamadoCommand AbrirTelaCriarNovoChamadoCommand { get; }
+        public VisualizarChamadoCommand VisualizarChamadoCommand { get; }
         private readonly IChamadoRepository _chamadoRepository;
 
         public GerenciarChamadosViewModel()
@@ -22,6 +23,7 @@ namespace CentralSuporte.ViewModels
             Chamados = new ObservableCollection<Chamado>();
             //AbrirChamadoCommand = new AbrirChamadoCommand(this);
             //AbrirTelaCriarNovoChamadoCommand = new AbrirTelaCriarNovoChamadoCommand(this);
+            VisualizarChamadoCommand = new VisualizarChamadoCommand(this);
             _chamadoRepository = new ChamadoRepository();
             CarregarTodosChamados();
             CarregarCbStatus();

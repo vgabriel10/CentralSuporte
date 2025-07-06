@@ -1,17 +1,25 @@
 ﻿
+using CentralSuporte.Entities;
+using CentralSuporte.Models.ViewModels;
+using CentralSuporte.ViewModels;
 using CentralSuporte.Views;
 
 namespace CentralSuporte.Commands.ChamadoCommands
 {
     public class VisualizarChamadoCommand : BaseCommand
     {
-        public VisualizarChamadoCommand()
+        private readonly GerenciarChamadosViewModel _viewModel;
+        public VisualizarChamadoCommand(GerenciarChamadosViewModel viewModel)
         {
-            
+            _viewModel = viewModel;
         }
         public override void Execute(object parameter)
         {
-            MainWindow.Navegador.NavegarPara(new CadastrarNovoUsuario());
+            if (parameter is Chamado chamadoSelecionado)
+            {
+                string id = chamadoSelecionado.Id;
+                MainWindow.Navegador.NavegarPara(new CadastrarNovoUsuario());
+            }
         }
     }
 }
