@@ -18,7 +18,7 @@ namespace CentralSuporte.Commands.ChamadoCommands
             if (parameter is Chamado chamadoSelecionado)
             {
                 string id = chamadoSelecionado.Id;
-                MainWindow.Navegador.NavegarPara(new CadastrarNovoUsuario());
+                MainWindow.Navegador.NavegarPara(new VisualizarDetalhesChamado(id));
             }
         }
     }

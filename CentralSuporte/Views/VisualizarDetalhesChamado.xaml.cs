@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CentralSuporte.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace CentralSuporte.Views
     /// </summary>
     public partial class VisualizarDetalhesChamado : Page
     {
-        public VisualizarDetalhesChamado()
+        public VisualizarDetalhesChamado(string idChamado)
         {
             InitializeComponent();
+            DataContext = new VisualizarDetalhesChamadoViewModel(idChamado);
         }
     }
 }

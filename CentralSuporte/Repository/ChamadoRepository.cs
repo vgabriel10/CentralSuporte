@@ -23,6 +23,11 @@ namespace CentralSuporte.Repository
             await _chamadoDbContext.InsertOneAsync(chamado);
         }
 
+        public async Task<Chamado> ObterChamadoPorIdAsync(string id)
+        {
+            return await _chamadoDbContext.Find(Builders<Chamado>.Filter.Eq(c => c.Id, id)).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Chamado>> ObterTodosChamadosAsync()
         {
             return await _chamadoDbContext.Find(Builders<Chamado>.Filter.Empty).ToListAsync();

@@ -9,32 +9,46 @@
       Title="VisualizarDetalhesChamado">
 
     <Grid>
-        <DataGrid  Grid.Row="0" 
-              ItemsSource="{Binding Chamados}" 
-              SelectedItem="{Binding ChamadoSelecionado, Mode=TwoWay}"
-              AutoGenerateColumns="False"
-              SelectionMode="Single"
-              IsReadOnly="True"
-              Margin="0,50,0,10">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Ações">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Visualizar"
-                    Command="{Binding DataContext.ComandoVisualizar, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                    CommandParameter="{Binding}" 
-                    Padding="5,2"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Título" Binding="{Binding Titulo}"/>
-                <DataGridTextColumn Header="Cargo" Binding="{Binding Cargo}"/>
-                <DataGridTextColumn Header="Prioridade" Binding="{Binding Prioridade}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Responsável" Binding="{Binding Responsavel}"/>
-                <DataGridTextColumn Header="Abertura" Binding="{Binding DataAbertura, StringFormat=dd/MM/yyyy}"/>
-                <DataGridTextColumn Header="Fechamento" Binding="{Binding DataFechamento, StringFormat=dd/MM/yyyy}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Margin="0,0,0,0">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Título:" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Chamado.Titulo}" Grid.Row="0" Margin="100,0,0,0"/>
+
+                <TextBlock Text="Cargo:" Grid.Row="1" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Chamado.Cargo}" Grid.Row="1" Margin="100,0,0,0"/>
+
+                <TextBlock Text="Prioridade:" Grid.Row="2" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Chamado.Prioridade}" Grid.Row="2" Margin="100,0,0,0"/>
+
+                <TextBlock Text="Status:" Grid.Row="3" FontWeight="Bold"/>
+                <ComboBox Text="{Binding Chamado.Status}" Grid.Row="3" Margin="100,0,0,0"/>
+
+                <TextBlock Text="Responsável:" Grid.Row="4" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Chamado.Responsavel}" Grid.Row="4" Margin="100,0,0,0"/>
+
+                <TextBlock Text="Data Abertura:" Grid.Row="5" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Chamado.DataAbertura, StringFormat=dd/MM/yyyy}" Grid.Row="5" Margin="100,0,0,0"/>
+
+                <TextBlock Text="Data Fechamento:" Grid.Row="6" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Chamado.DataFechamento, StringFormat=dd/MM/yyyy}" Grid.Row="6" Margin="100,0,0,0"/>
+            </Grid>
+        </StackPanel>
+        
+        <StackPanel Margin="0,300,0,0">
+            <Label Content="Atribuir responsável:" />
+        </StackPanel>
+        <ComboBox />
+
     </Grid>
 </Page>
