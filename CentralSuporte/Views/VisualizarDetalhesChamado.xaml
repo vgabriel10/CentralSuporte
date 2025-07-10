@@ -19,36 +19,52 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Título:" FontWeight="Bold"/>
-                <TextBlock Text="{Binding Chamado.Titulo}" Grid.Row="0" Margin="100,0,0,0"/>
+                <TextBlock Text="Título:" FontWeight="Bold" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Chamado.Titulo}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
 
-                <TextBlock Text="Cargo:" Grid.Row="1" FontWeight="Bold"/>
-                <TextBlock Text="{Binding Chamado.Cargo}" Grid.Row="1" Margin="100,0,0,0"/>
+                <TextBlock Text="Cargo:" FontWeight="Bold" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Chamado.Cargo}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
 
-                <TextBlock Text="Prioridade:" Grid.Row="2" FontWeight="Bold"/>
-                <TextBlock Text="{Binding Chamado.Prioridade}" Grid.Row="2" Margin="100,0,0,0"/>
+                <TextBlock Text="Prioridade:" FontWeight="Bold" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Chamado.Prioridade}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
 
-                <TextBlock Text="Status:" Grid.Row="3" FontWeight="Bold"/>
-                <ComboBox Text="{Binding Chamado.Status}" Grid.Row="3" Margin="100,0,0,0"/>
+                <TextBlock Text="Status:" FontWeight="Bold" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                <ComboBox ItemsSource="{Binding ListaStatus}"
+                  SelectedItem="{Binding Chamado.Status}"
+                  Grid.Row="3" Grid.Column="1"
+                  VerticalAlignment="Center"
+                  Width="150"
+                  Margin="0,0,500,0"/> 
 
-                <TextBlock Text="Responsável:" Grid.Row="4" FontWeight="Bold"/>
-                <TextBlock Text="{Binding Chamado.Responsavel}" Grid.Row="4" Margin="100,0,0,0"/>
+                <TextBlock Text="Responsável:" FontWeight="Bold" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Chamado.Responsavel}" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
 
-                <TextBlock Text="Data Abertura:" Grid.Row="5" FontWeight="Bold"/>
-                <TextBlock Text="{Binding Chamado.DataAbertura, StringFormat=dd/MM/yyyy}" Grid.Row="5" Margin="100,0,0,0"/>
+                <TextBlock Text="Data Abertura:" FontWeight="Bold" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Chamado.DataAbertura, StringFormat=dd/MM/yyyy}" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"/>
 
-                <TextBlock Text="Data Fechamento:" Grid.Row="6" FontWeight="Bold"/>
-                <TextBlock Text="{Binding Chamado.DataFechamento, StringFormat=dd/MM/yyyy}" Grid.Row="6" Margin="100,0,0,0"/>
+                <TextBlock Text="Data Fechamento:" FontWeight="Bold" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Chamado.DataFechamento, StringFormat=dd/MM/yyyy}" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
             </Grid>
         </StackPanel>
-        
-        <StackPanel Margin="0,300,0,0">
-            <Label Content="Atribuir responsável:" />
-        </StackPanel>
-        <ComboBox />
+
+
+        <Grid Margin="0,200,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Atribuir responsável:" Grid.Column="0" VerticalAlignment="Center" Foreground="Black"/>
+            <ComboBox Grid.Column="1" Width="200" Margin="0,0,400,0"/>
+        </Grid>
+
+
 
     </Grid>
 </Page>
