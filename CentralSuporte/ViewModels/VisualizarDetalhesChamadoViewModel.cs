@@ -8,9 +8,17 @@ namespace CentralSuporte.ViewModels
     public class VisualizarDetalhesChamadoViewModel : BaseViewModel
     {
         private readonly IChamadoRepository _chamadoRepository;
+        public Dictionary<string, Status> ListaStatus { get; set; }
         public VisualizarDetalhesChamadoViewModel(string idChamado)
         {
             _chamadoRepository = new ChamadoRepository();
+            ListaStatus = new Dictionary<string, Status>
+            {
+                { "Aberto", Status.Aberto },
+                { "Em andamento", Status.EmAndamento },
+                { "Resolvido", Status.Resolvido },
+                { "Cancelado", Status.Cancelado }
+            };
             BuscarChamado(idChamado);
         }
 
@@ -25,7 +33,7 @@ namespace CentralSuporte.ViewModels
             }
         }
 
-        public List<string> ListaStatus { get; set; } = Enum.GetNames(typeof(Status)).ToList();
+        //public List<string> ListaStatus { get; set; } = Enum.GetNames(typeof(Status)).ToList();
 
 
         private async Task BuscarChamado(string idChamado)
