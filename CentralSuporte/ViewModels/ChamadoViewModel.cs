@@ -149,7 +149,7 @@ namespace CentralSuporte.Models.ViewModels
                 Cargo = this.Cargo,
                 Prioridade = this.Prioridade,
                 Status = this.Status,
-                Responsavel = this.Responsavel,
+                Responsavel = null,
                 DataAbertura = this.DataAbertura,
                 DataFechamento = this.DataFechamento
             };

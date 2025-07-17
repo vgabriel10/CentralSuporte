@@ -34,5 +34,10 @@ namespace CentralSuporte.Repository
         {
             return await _usuario.Find(_ => true).ToListAsync();
         }
+
+        public async Task<List<Usuario>> ObterTodosUsuariosSuporte()
+        {
+            return await _usuario.Find(_ => _.TipoUsuario == Enums.TipoUsuario.Suporte).ToListAsync();
+        }
     }
 }

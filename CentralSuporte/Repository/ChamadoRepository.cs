@@ -23,6 +23,21 @@ namespace CentralSuporte.Repository
             await _chamadoDbContext.InsertOneAsync(chamado);
         }
 
+        public async Task<Chamado> EditarChamado(Chamado chamado)
+        {
+            if (string.IsNullOrEmpty(chamado.Id))
+                throw new ArgumentException("Id do chamado não pode ser nulo ou vazio.");
+
+            var filter = Builders<Chamado>.Filter.Eq(c => c.Id, chamado.Id);
+
+            var resultado = await _chamadoDbContext.ReplaceOneAsync(filter, chamado);
+
+            if (resultado.MatchedCount == 0)
+                throw new Exception("Chamado não encontrado para edição.");
+
+            return chamado;
+        }
+
         public async Task<Chamado> ObterChamadoPorIdAsync(string id)
         {
             return await _chamadoDbContext.Find(Builders<Chamado>.Filter.Eq(c => c.Id, id)).FirstOrDefaultAsync();
