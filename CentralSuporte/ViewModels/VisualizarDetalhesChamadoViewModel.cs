@@ -56,6 +56,8 @@ namespace CentralSuporte.ViewModels
         {
             if (Chamado != null)
             {
+                if (Chamado.Status == Status.Resolvido)
+                    Chamado.DataFechamento = DateTime.Now;
                 await _chamadoRepository.EditarChamado(Chamado);
             }
         }
