@@ -6,6 +6,7 @@ using CentralSuporte.Entities;
 using CentralSuporte.Enums;
 using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
+using CentralSuporte.Service;
 using CentralSuporte.Views;
 using System.ComponentModel;
 using System.Windows;
@@ -100,9 +101,11 @@ namespace CentralSuporte.ViewModels
                 {
                     case TipoUsuario.Usuario:
                         MainWindow.Navegador.NavegarPara(new VisualizarChamados());
+                        SessaoService.TipoUsuarioLogado = TipoUsuario.Usuario;
                         break;
                     case TipoUsuario.Suporte:
                         MainWindow.Navegador.NavegarPara(new GerenciarChamado());
+                        SessaoService.TipoUsuarioLogado = TipoUsuario.Suporte;
                         break;
                 }                   
             }

@@ -8,5 +8,6 @@ namespace CentralSuporte.Service
         void NavegarPara(Page page);
         void Voltar();
         bool PodeVoltar();
+        public void LimparPilhaNavegacao();
     }
 }

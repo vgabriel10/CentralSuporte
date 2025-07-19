@@ -34,5 +34,10 @@ namespace CentralSuporte.Service
         {
             return _historico.Count > 0;
         }
+
+        public void LimparPilhaNavegacao()
+        {
+            _historico.Clear();
+        }
     }
 }

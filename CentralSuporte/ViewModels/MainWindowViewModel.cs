@@ -8,10 +8,12 @@ namespace CentralSuporte.ViewModels
     {
         public MenuNavegacaoCommand MenuNavegacaoCommand { get;}
         public VoltarPaginaCommand VoltarPaginaCommand { get; }
+        public AbrirTelaHomeCommand AbrirTelaHomeCommand { get; }
         public MainWindowViewModel()
         {
             MenuNavegacaoCommand = new MenuNavegacaoCommand();
             VoltarPaginaCommand = new VoltarPaginaCommand();
+            AbrirTelaHomeCommand = new AbrirTelaHomeCommand();
         }
     }
 }

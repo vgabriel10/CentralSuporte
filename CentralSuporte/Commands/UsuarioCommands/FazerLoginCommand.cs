@@ -20,15 +20,6 @@ namespace CentralSuporte.Commands.UsuarioCommands
         }
         public async override void Execute(object parameter)
         {
-            //var usuario = new Usuario
-            //{
-            //    Nome = _viewModel.Nome,
-            //    Senha = _viewModel.Senha
-            //};
-
-            ////Como faço para retornar se o usuário fez o login certo 
-            //await _UsuarioRepository.FazerLogin(usuario);
-
             _viewModel.FazerLogin();
 
         }

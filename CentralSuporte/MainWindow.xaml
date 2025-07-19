@@ -13,7 +13,7 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#EEE" Height="40">
             <Button Content="🔙 Voltar" Margin="5" Command="{Binding VoltarPaginaCommand}"/>
-            <Button Content="🏠 Início" Margin="5"  Command="{Binding MenuNavegacaoCommand}" CommandParameter="{x:Type views:GerenciarChamado}"/>
+            <Button Content="🏠 Início" Margin="5"  Command="{Binding AbrirTelaHomeCommand}"/>
         </StackPanel>
 
         <Frame x:Name="main" NavigationUIVisibility="Hidden" />

@@ -1,4 +1,5 @@
 ﻿using CentralSuporte.Entities;
+using CentralSuporte.Enums;
 using CentralSuporte.Models.ViewModels;
 using CentralSuporte.Persistence.Data;
 using CentralSuporte.Repository;
@@ -27,6 +28,7 @@ namespace CentralSuporte;
 public partial class MainWindow : Window
 {
     public static INavigationService Navegador;
+    public static TipoUsuario TipoUsuarioLogado { get; set; }
     public ObservableCollection<ChamadoViewModel> Chamados { get; set; }
 
     public MainWindow(IUsuarioRepository usuarioRepository)

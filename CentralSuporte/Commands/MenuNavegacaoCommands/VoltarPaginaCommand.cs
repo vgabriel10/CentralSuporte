@@ -1,8 +1,4 @@
-﻿
-using System.Windows.Controls;
-using System.Windows.Navigation;
-
-namespace CentralSuporte.Commands.MenuNavegacaoCommands
+﻿namespace CentralSuporte.Commands.MenuNavegacaoCommands
 {
     public class VoltarPaginaCommand : BaseCommand
     {
