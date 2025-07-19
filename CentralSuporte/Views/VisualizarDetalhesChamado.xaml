@@ -23,6 +23,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -55,11 +56,20 @@
                           Margin="0,0,170,0"
                           Width="200"/>
 
-                <TextBlock Text="Data Abertura:" FontWeight="Bold" Grid.Row="5" Grid.Column="0" Margin="0 6"/>
-                <TextBlock Text="{Binding Chamado.DataAbertura, StringFormat=dd/MM/yyyy}" Grid.Row="5" Grid.Column="1" Margin="0 6"/>
+                <TextBlock Text="Descrição:" FontWeight="Bold" Grid.Row="5" Grid.Column="0" Margin="0 6" VerticalAlignment="Top"/>
+                <TextBox Grid.Row="5" Grid.Column="1"
+                         Margin="0 6"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         Height="100"
+                         Text="{Binding Chamado.Descricao, Mode=TwoWay}"/>
 
-                <TextBlock Text="Data Fechamento:" FontWeight="Bold" Grid.Row="6" Grid.Column="0" Margin="0 6"/>
-                <TextBlock Text="{Binding Chamado.DataFechamento, StringFormat=dd/MM/yyyy}" Grid.Row="6" Grid.Column="1" Margin="0 6"/>
+                <TextBlock Text="Data Abertura:" FontWeight="Bold" Grid.Row="6" Grid.Column="0" Margin="0 6"/>
+                <TextBlock Text="{Binding Chamado.DataAbertura, StringFormat=dd/MM/yyyy}" Grid.Row="6" Grid.Column="1" Margin="0 6"/>
+
+                <TextBlock Text="Data Fechamento:" FontWeight="Bold" Grid.Row="7" Grid.Column="0" Margin="0 6"/>
+                <TextBlock Text="{Binding Chamado.DataFechamento, StringFormat=dd/MM/yyyy}" Grid.Row="7" Grid.Column="1" Margin="0 6"/>
 
                 <wpfui:Button Content="Salvar"
                               Command="{Binding SalvarDetalhesChamadoCommand}"
