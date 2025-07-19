@@ -4,6 +4,7 @@ using CentralSuporte.Persistence.Data;
 using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
 using CentralSuporte.Service;
+using CentralSuporte.ViewModels;
 using CentralSuporte.Views;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -31,7 +32,7 @@ public partial class MainWindow : Window
     public MainWindow(IUsuarioRepository usuarioRepository)
     {
         InitializeComponent();
-
+        DataContext = new MainWindowViewModel();
         Navegador = new NavigationService(main);
         main.Content = new Login();
 

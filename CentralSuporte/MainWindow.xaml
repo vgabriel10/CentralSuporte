@@ -6,13 +6,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:tray="http://schemas.lepo.co/wpfui/2022/xaml/tray"
+        xmlns:views="clr-namespace:CentralSuporte.Views"
         Title="MainWindow" MinHeight="500" Width="800"
         WindowStartupLocation="CenterScreen">
 
-    <StackPanel>
-        <Frame x:Name="main" NavigationUIVisibility="Hidden">
-            
-        </Frame>
-    </StackPanel>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#EEE" Height="40">
+            <Button Content="🔙 Voltar" Margin="5" Command="{Binding VoltarPaginaCommand}"/>
+            <Button Content="🏠 Início" Margin="5"  Command="{Binding MenuNavegacaoCommand}" CommandParameter="{x:Type views:GerenciarChamado}"/>
+        </StackPanel>
+
+        <Frame x:Name="main" NavigationUIVisibility="Hidden" />
+    </DockPanel>
 
 </Window>

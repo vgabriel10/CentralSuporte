@@ -6,5 +6,7 @@ namespace CentralSuporte.Service
     public interface INavigationService
     {
         void NavegarPara(Page page);
+        void Voltar();
+        bool PodeVoltar();
     }
 }
