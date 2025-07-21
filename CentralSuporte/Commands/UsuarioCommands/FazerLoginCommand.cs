@@ -21,7 +21,6 @@ namespace CentralSuporte.Commands.UsuarioCommands
         public async override void Execute(object parameter)
         {
             _viewModel.FazerLogin();
-
         }
     }
 }

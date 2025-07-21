@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -58,4 +58,4 @@
         <ui:Button x:Name="btnEntrar" Content="Entrar" Margin="319,379,0,0" VerticalAlignment="Top" Click="btnEntrar_Click"/>-->
 
     </Grid>
-</Page>
+</Window>

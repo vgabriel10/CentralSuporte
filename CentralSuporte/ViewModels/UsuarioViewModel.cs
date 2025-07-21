@@ -97,6 +97,18 @@ namespace CentralSuporte.ViewModels
 
             if (usuario != null)
             {
+                if (MainWindow.Navegador is null)
+                {
+                    var janelaPrincipal = new MainWindow();
+                    janelaPrincipal.Show();
+
+                    // Fecha a janela de login (Login.xaml)
+                    Application.Current.Windows
+                        .OfType<Window>()
+                        .FirstOrDefault(w => w is Login)
+                        ?.Close();
+                }
+               
                 switch (usuario.TipoUsuario)
                 {
                     case TipoUsuario.Usuario:

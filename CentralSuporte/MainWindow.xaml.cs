@@ -28,21 +28,12 @@ namespace CentralSuporte;
 public partial class MainWindow : Window
 {
     public static INavigationService Navegador;
-    public static TipoUsuario TipoUsuarioLogado { get; set; }
-    public ObservableCollection<ChamadoViewModel> Chamados { get; set; }
-
-    public MainWindow(IUsuarioRepository usuarioRepository)
+    public MainWindow()
     {
         InitializeComponent();
         DataContext = new MainWindowViewModel();
         Navegador = new NavigationService(main);
-        main.Content = new Login();
-
-    }
-
-    private async void Button_Click(object sender, RoutedEventArgs e)
-    {
-        
+        //main.Content = new Login();
 
     }
 

@@ -1,5 +1,5 @@
 ﻿using CentralSuporte.ViewModels;
-using System.Windows.Controls;
+using System.Windows;
 
 
 namespace CentralSuporte.Views
@@ -7,7 +7,7 @@ namespace CentralSuporte.Views
     /// <summary>
     /// Lógica interna para Login.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class Login : Window
     {
         public Login()
         {

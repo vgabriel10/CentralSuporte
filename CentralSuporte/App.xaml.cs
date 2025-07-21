@@ -1,6 +1,7 @@
 ﻿using CentralSuporte.Persistence.Data;
 using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
+using CentralSuporte.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System.Configuration;
 using System.Data;
@@ -21,8 +22,10 @@ public partial class App : Application
 
         ServiceProvider = serviceCollection.BuildServiceProvider();
 
-        var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-        mainWindow.Show();
+        //var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+        //mainWindow.Show();
+        var loginWindow = ServiceProvider.GetRequiredService<Login>();
+        loginWindow.Show();
     }
 
     private void ConfigureServices(IServiceCollection services)
@@ -34,7 +37,7 @@ public partial class App : Application
             return new CentralSuporteDbContext(connectionString, databaseName);
         });
 
-
+        services.AddSingleton<Login>();
         services.AddSingleton<MainWindow>();
         services.AddScoped<IUsuarioRepository,UsuarioRepository>();
     }
