@@ -9,7 +9,8 @@ namespace CentralSuporte.Commands.UsuarioCommands
 
         public override void Execute(object parameter)
         {
-            MainWindow.Navegador.NavegarPara(new CadastrarNovoUsuario());
+            var janelaPrincipal = new CadastrarNovoUsuario();
+            janelaPrincipal.ShowDialog();
         }
     }
 }

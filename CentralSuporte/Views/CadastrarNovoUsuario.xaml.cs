@@ -19,7 +19,7 @@ namespace CentralSuporte.Views
     /// <summary>
     /// Interação lógica para CadastrarNovoUsuario.xam
     /// </summary>
-    public partial class CadastrarNovoUsuario : Page
+    public partial class CadastrarNovoUsuario : Window
     {
         
         public CadastrarNovoUsuario()

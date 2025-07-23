@@ -83,6 +83,13 @@ namespace CentralSuporte.ViewModels
             };
 
             await _usuarioRepository.AdicionarUsuarioAsync(usuario);
+
+            MessageBox.Show($"Usuário {usuario.Nome} criado com sucesso", "Sucesso!");
+
+            Application.Current.Windows
+                        .OfType<Window>()
+                        .FirstOrDefault(w => w is CadastrarNovoUsuario)
+                        ?.Close();
         }
 
         public async void FazerLogin()
