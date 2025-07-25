@@ -4,9 +4,11 @@ using CentralSuporte.Entities;
 using CentralSuporte.Enums;
 using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
+using CentralSuporte.Validators;
 using CentralSuporte.ViewModels;
 using CentralSuporte.Views;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CentralSuporte.Models.ViewModels
@@ -17,6 +19,7 @@ namespace CentralSuporte.Models.ViewModels
         public AbrirChamadoCommand AbrirChamadoCommand { get; }
         public AbrirTelaCriarNovoChamadoCommand AbrirTelaCriarNovoChamadoCommand { get; }
         private readonly IChamadoRepository _chamadoRepository;
+        private readonly AbrirChamadoValidator _abrirChamadoValidator = new AbrirChamadoValidator();
 
         public ChamadoViewModel()
         {
@@ -24,6 +27,7 @@ namespace CentralSuporte.Models.ViewModels
             AbrirChamadoCommand = new AbrirChamadoCommand(this);
             AbrirTelaCriarNovoChamadoCommand = new AbrirTelaCriarNovoChamadoCommand(this);
             _chamadoRepository = new ChamadoRepository();
+            _abrirChamadoValidator = new AbrirChamadoValidator();
             CarregarTodosChamados();
         }
 
@@ -66,6 +70,7 @@ namespace CentralSuporte.Models.ViewModels
             {
                 _cargo = value;
                 OnPropertyChanged(nameof(Cargo));
+                AbrirChamadoCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -101,7 +106,7 @@ namespace CentralSuporte.Models.ViewModels
                 {
                     _responsavel = value;
                     OnPropertyChanged(nameof(Responsavel));
-                    AbrirChamadoCommand.RaiseCanExecuteChanged();
+                    //AbrirChamadoCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -141,7 +146,7 @@ namespace CentralSuporte.Models.ViewModels
         }
 
         public async Task AbrirNovoChamado()
-        {
+        {            
             var novoChamado = new Chamado
             {
                 Titulo = this.Titulo,
@@ -153,6 +158,13 @@ namespace CentralSuporte.Models.ViewModels
                 DataAbertura = this.DataAbertura,
                 DataFechamento = this.DataFechamento
             };
+            _abrirChamadoValidator.Validar(novoChamado);
+            var erros = _abrirChamadoValidator.Validar(novoChamado);
+            if (erros.Any())
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, erros), "Atenção!");
+                return;
+            }
 
             Chamados.Add(novoChamado);
 

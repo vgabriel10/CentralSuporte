@@ -27,7 +27,7 @@ namespace CentralSuporte.Commands.ChamadoCommands
         {
             return !string.IsNullOrWhiteSpace(_viewModel.Titulo)
                 && !string.IsNullOrWhiteSpace(_viewModel.Descricao)
-                && !string.IsNullOrWhiteSpace(_viewModel.Responsavel);
+                && !string.IsNullOrWhiteSpace(_viewModel.Cargo);
         }
 
         public async override void Execute(object parameter)

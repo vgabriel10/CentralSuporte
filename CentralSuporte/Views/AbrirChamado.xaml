@@ -19,7 +19,7 @@
             <Label Content="Cargo:"/>
             <TextBox Text="{Binding Cargo, UpdateSourceTrigger=PropertyChanged}"  Margin="0 5"/>
             <Label Content="Responsável:"/>
-            <TextBox Text="{Binding Responsavel, UpdateSourceTrigger=PropertyChanged}"  Margin="0 5"/>
+            <!--<TextBox Text="{Binding Responsavel, UpdateSourceTrigger=PropertyChanged}"  Margin="0 5"/>-->
             <Button  Content="Abrir chamado" IsEnabled="True"  Command="{Binding AbrirChamadoCommand}" />
         </StackPanel>
     </Grid>
