@@ -7,6 +7,7 @@ using CentralSuporte.Enums;
 using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
 using CentralSuporte.Service;
+using CentralSuporte.Validators;
 using CentralSuporte.Views;
 using System.ComponentModel;
 using System.Windows;
@@ -19,12 +20,14 @@ namespace CentralSuporte.ViewModels
         public FazerLoginCommand FazerLoginCommand { get; }
         public AbrirTelaCriarNovoUsuarioCommand AbrirTelaCriarNovoUsuarioCommand { get; }
         private readonly IUsuarioRepository _usuarioRepository;
+        private CriarUsuarioValidator _criarUsuarioValidator;
         public UsuarioViewModel()
         {
             _usuarioRepository = new UsuarioRepository();
             CriarUsuarioCommand = new CriarUsuarioCommand(this);
             FazerLoginCommand = new FazerLoginCommand(this);
             AbrirTelaCriarNovoUsuarioCommand = new AbrirTelaCriarNovoUsuarioCommand();
+            _criarUsuarioValidator = new CriarUsuarioValidator();
         }
         private string _nome;
         public string Nome 
@@ -81,6 +84,13 @@ namespace CentralSuporte.ViewModels
                 Senha = this.Senha,
                 TipoUsuario = this.TipoUsuario
             };
+
+            var erros = _criarUsuarioValidator.Validar(usuario);
+            if(erros.Any())
+            {
+                MessageBox.Show(string.Join(Environment.NewLine, erros), "Atenção!");
+                return;
+            }
 
             await _usuarioRepository.AdicionarUsuarioAsync(usuario);
 
