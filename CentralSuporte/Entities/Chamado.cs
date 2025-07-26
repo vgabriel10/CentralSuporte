@@ -16,6 +16,8 @@ namespace CentralSuporte.Entities
         public string Cargo { get; set; }
         public Prioridade Prioridade { get; set; }
         public Status Status { get; set; }
+        public string Usuario { get; set; }
+        public string UsuarioId { get; set; }
         public string Responsavel { get; set; }
         public string ResponsavelId { get; set; }
         public DateTime DataAbertura { get; set; } = DateTime.Now;

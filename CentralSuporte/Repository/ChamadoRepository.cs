@@ -12,6 +12,7 @@ namespace CentralSuporte.Repository
 
         private readonly CentralSuporteDbContext? _context;
 
+
         public ChamadoRepository()
         {
             _context = App.ServiceProvider.GetRequiredService<CentralSuporteDbContext>();
@@ -41,6 +42,11 @@ namespace CentralSuporte.Repository
         public async Task<Chamado> ObterChamadoPorIdAsync(string id)
         {
             return await _chamadoDbContext.Find(Builders<Chamado>.Filter.Eq(c => c.Id, id)).FirstOrDefaultAsync();
+        }
+
+        public Task<List<Chamado>> ObterChamadosPorUsuarioAsync(string usuarioId)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<Chamado>> ObterTodosChamadosAsync()

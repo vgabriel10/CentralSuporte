@@ -21,7 +21,8 @@ namespace CentralSuporte.Entities
         public string Senha { get; set; } = string.Empty;
         [BsonElement("tipoUsuario")]
         public TipoUsuario TipoUsuario { get; set; }
-
+        [BsonElement("cargo")]
+        public string Cargo { get; set; } = string.Empty;
         //[BsonElement("preco")]
         //public double Preco { get; set; }
     }
