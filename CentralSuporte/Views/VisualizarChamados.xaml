@@ -1,27 +1,42 @@
 ﻿<Page x:Class="CentralSuporte.Views.VisualizarChamados"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:wpfui="clr-namespace:Wpf.Ui.Controls;assembly=Wpf.Ui"
       xmlns:local="clr-namespace:CentralSuporte.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      mc:Ignorable="d"
       Title="VisualizarChamados">
 
-    <Grid>
+    <StackPanel Margin="20" HorizontalAlignment="Stretch">
 
-        <StackPanel Margin="0,10,0,0">
-            <Button  Content="Abrir chamado" IsEnabled="True"  Command="{Binding AbrirTelaCriarNovoChamadoCommand}" />
-        </StackPanel>
-        <StackPanel>
+        <!-- Botão -->
+        <wpfui:Button Content="Abrir Chamado"
+                      Command="{Binding AbrirTelaCriarNovoChamadoCommand}"
+                      Width="160"
+                      Height="40"
+                      HorizontalAlignment="Left"
+                      Appearance="Primary"
+                      Margin="0,0,0,10" />
 
-
-            <StackPanel Margin="0,50,0,0">
-                <DataGrid  x:Name="dgvChamados" HorizontalAlignment="Center" ItemsSource="{Binding Chamados}"/>
-            </StackPanel>
-
-        </StackPanel>
-
-
-    </Grid>
+        <!-- Grade com os chamados -->
+        <wpfui:Card Padding="10">
+            <Grid>
+                <DataGrid x:Name="dgvChamados"
+                          ItemsSource="{Binding Chamados}"
+                          AutoGenerateColumns="True"
+                          IsReadOnly="True"
+                          Margin="0"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          GridLinesVisibility="None"
+                          HeadersVisibility="Column"
+                          RowHeaderWidth="0"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow"
+                          AlternatingRowBackground="LightGray"
+                          BorderThickness="0"/>
+            </Grid>
+        </wpfui:Card>
+    </StackPanel>
 </Page>
