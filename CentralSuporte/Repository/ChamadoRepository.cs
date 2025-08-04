@@ -44,9 +44,9 @@ namespace CentralSuporte.Repository
             return await _chamadoDbContext.Find(Builders<Chamado>.Filter.Eq(c => c.Id, id)).FirstOrDefaultAsync();
         }
 
-        public Task<List<Chamado>> ObterChamadosPorUsuarioAsync(string usuarioId)
+        public async Task<List<Chamado>> ObterChamadosPorUsuarioAsync(string usuarioId)
         {
-            throw new NotImplementedException();
+            return await _chamadoDbContext.Find(Builders<Chamado>.Filter.Eq(c => c.UsuarioId, usuarioId)).ToListAsync();
         }
 
         public async Task<List<Chamado>> ObterTodosChamadosAsync()

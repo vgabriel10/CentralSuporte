@@ -4,6 +4,7 @@ using CentralSuporte.Entities;
 using CentralSuporte.Enums;
 using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
+using CentralSuporte.Service;
 using CentralSuporte.Validators;
 using CentralSuporte.ViewModels;
 using CentralSuporte.Views;
@@ -146,12 +147,14 @@ namespace CentralSuporte.Models.ViewModels
         }
 
         public async Task AbrirNovoChamado()
-        {            
+        {
             var novoChamado = new Chamado
             {
                 Titulo = this.Titulo,
                 Descricao = this.Descricao,
                 Cargo = this.Cargo,
+                Usuario = SessaoService.NomeUsuarioLogado,
+                UsuarioId = SessaoService.IdUsuarioLogado,
                 Prioridade = this.Prioridade,
                 Status = this.Status,
                 Responsavel = null,

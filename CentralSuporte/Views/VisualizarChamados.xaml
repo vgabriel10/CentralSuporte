@@ -22,20 +22,60 @@
         <!-- Grade com os chamados -->
         <wpfui:Card Padding="10">
             <Grid>
+                <!--<DataGrid x:Name="dgvChamados"
+                  ItemsSource="{Binding Chamados}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  Margin="0"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  GridLinesVisibility="None"
+                  HeadersVisibility="Column"
+                  RowHeaderWidth="0"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  AlternatingRowBackground="LightGray"
+                  BorderThickness="0">
+
+                    <DataGridTextColumn Header="Título" Binding="{Binding Titulo}" />
+                    <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" />
+                    <DataGridTextColumn Header="Cargo" Binding="{Binding Cargo}" />
+                    <DataGridTextColumn Header="Prioridade" Binding="{Binding Prioridade}" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                    <DataGridTextColumn Header="Usuário" Binding="{Binding Usuario}" />
+                    <DataGridTextColumn Header="Responsável" Binding="{Binding Responsavel}" />
+                    <DataGridTextColumn Header="Data Abertura" Binding="{Binding DataAbertura, StringFormat=dd/MM/yyyy HH:mm}" />
+                    <DataGridTextColumn Header="Data Fechamento" Binding="{Binding DataFechamento, StringFormat=dd/MM/yyyy HH:mm}" />
+                </DataGrid>-->
+
                 <DataGrid x:Name="dgvChamados"
-                          ItemsSource="{Binding Chamados}"
-                          AutoGenerateColumns="True"
-                          IsReadOnly="True"
-                          Margin="0"
-                          HorizontalAlignment="Stretch"
-                          VerticalAlignment="Stretch"
-                          GridLinesVisibility="None"
-                          HeadersVisibility="Column"
-                          RowHeaderWidth="0"
-                          SelectionMode="Single"
-                          SelectionUnit="FullRow"
-                          AlternatingRowBackground="LightGray"
-                          BorderThickness="0"/>
+                  ItemsSource="{Binding Chamados}" 
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  Margin="0"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  GridLinesVisibility="None"
+                  HeadersVisibility="Column"
+                  RowHeaderWidth="0"
+                  AlternatingRowBackground="LightGray"
+                  BorderThickness="0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Título" Binding="{Binding Titulo}" />
+                        <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" />
+                        <DataGridTextColumn Header="Cargo" Binding="{Binding Cargo}" />
+                        <DataGridTextColumn Header="Usuário" Binding="{Binding Usuario}" />
+                        <DataGridTextColumn Header="Prioridade" Binding="{Binding Prioridade}" />
+                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                        <DataGridTextColumn Header="Responsável" Binding="{Binding Responsavel}" />
+                        <DataGridTextColumn Header="Data Abertura" Binding="{Binding DataAbertura, StringFormat=dd/MM/yyyy HH:mm}" />
+                        <DataGridTextColumn Header="Data Fechamento" Binding="{Binding DataFechamento, StringFormat=dd/MM/yyyy HH:mm}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+
+
             </Grid>
         </wpfui:Card>
     </StackPanel>

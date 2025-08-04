@@ -1,6 +1,7 @@
 ﻿
 
 using CentralSuporte.Commands.ChamadoCommands;
+using CentralSuporte.Commands.MenuNavegacaoCommands;
 using CentralSuporte.Commands.UsuarioCommands;
 using CentralSuporte.Entities;
 using CentralSuporte.Enums;
@@ -19,14 +20,17 @@ namespace CentralSuporte.ViewModels
         public CriarUsuarioCommand CriarUsuarioCommand { get; }
         public FazerLoginCommand FazerLoginCommand { get; }
         public AbrirTelaCriarNovoUsuarioCommand AbrirTelaCriarNovoUsuarioCommand { get; }
+        private FecharAplicacaoCommand FecharAplicacaoCommand { get; }
         private readonly IUsuarioRepository _usuarioRepository;
         private CriarUsuarioValidator _criarUsuarioValidator;
+        
         public UsuarioViewModel()
         {
             _usuarioRepository = new UsuarioRepository();
             CriarUsuarioCommand = new CriarUsuarioCommand(this);
             FazerLoginCommand = new FazerLoginCommand(this);
             AbrirTelaCriarNovoUsuarioCommand = new AbrirTelaCriarNovoUsuarioCommand();
+            FecharAplicacaoCommand = new FecharAplicacaoCommand();
             _criarUsuarioValidator = new CriarUsuarioValidator();
         }
         private string _nome;
@@ -136,7 +140,8 @@ namespace CentralSuporte.ViewModels
                         MainWindow.Navegador.NavegarPara(new GerenciarChamado());
                         SessaoService.TipoUsuarioLogado = TipoUsuario.Suporte;
                         break;
-                }                   
+                }
+                SessaoService.NomeUsuarioLogado = usuario.Nome;
             }
             else
             {
