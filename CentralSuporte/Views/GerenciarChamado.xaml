@@ -4,55 +4,84 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CentralSuporte.Views"
+      xmlns:wpfui="clr-namespace:Wpf.Ui.Controls;assembly=Wpf.Ui"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       Title="GerenciarChamado">
 
-    <Grid>
-        <Grid Margin="0,0,0,410" Height="40">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="180"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="180"/>
-            </Grid.ColumnDefinitions>
+    <StackPanel Margin="20" HorizontalAlignment="Stretch">
 
-            <Label Grid.Column="0" Width="100" Content="Responsável" FontSize="12" FontWeight="Black" VerticalAlignment="Center" HorizontalAlignment="Left" />
-            <ComboBox Grid.Column="1" Width="160" />
-            <Label Grid.Column="2" Width="100" Content="Status" FontSize="12" FontWeight="Black" VerticalAlignment="Center" />
-            <ComboBox Grid.Column="3" Width="160" ItemsSource="{Binding CbStatus}" SelectedIndex="0" />
-        </Grid>
+        <!-- Filtros -->
+        <wpfui:Card Padding="10" Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="180"/>
+                </Grid.ColumnDefinitions>
 
+                <Label Grid.Column="0"
+                       Content="Responsável"
+                       VerticalAlignment="Center"
+                       FontSize="12"
+                       FontWeight="Bold" />
+                <ComboBox Grid.Column="1"
+                          Width="160"
+                          VerticalAlignment="Center"/>
 
+                <Label Grid.Column="2"
+                       Content="Status"
+                       VerticalAlignment="Center"
+                       FontSize="12"
+                       FontWeight="Bold"/>
+                <ComboBox Grid.Column="3"
+                          Width="160"
+                          VerticalAlignment="Center"
+                          ItemsSource="{Binding CbStatus}"
+                          SelectedIndex="0"/>
+            </Grid>
+        </wpfui:Card>
 
-        <DataGrid  Grid.Row="0" 
-                      ItemsSource="{Binding Chamados}" 
+        <!-- Tabela -->
+        <wpfui:Card Padding="10">
+            <DataGrid ItemsSource="{Binding Chamados}"
                       SelectedItem="{Binding ChamadoSelecionado, Mode=TwoWay}"
                       AutoGenerateColumns="False"
                       SelectionMode="Single"
                       IsReadOnly="True"
-                      Margin="0,50,0,10">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Ações">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Visualizar"
-                            Command="{Binding DataContext.VisualizarChamadoCommand , RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                            CommandParameter="{Binding}" 
-                            Padding="5,2"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Título" Binding="{Binding Titulo}"/>
-                <DataGridTextColumn Header="Cargo" Binding="{Binding Cargo}"/>
-                <DataGridTextColumn Header="Prioridade" Binding="{Binding Prioridade}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
-                <DataGridTextColumn Header="Responsável" Binding="{Binding Responsavel}"/>
-                <DataGridTextColumn Header="Abertura" Binding="{Binding DataAbertura, StringFormat=dd/MM/yyyy}"/>
-                <DataGridTextColumn Header="Fechamento" Binding="{Binding DataFechamento, StringFormat=dd/MM/yyyy}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                      GridLinesVisibility="None"
+                      HeadersVisibility="Column"
+                      RowHeaderWidth="0"
+                      AlternatingRowBackground="LightGray"
+                      BorderThickness="0"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Ações">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <wpfui:Button Content="Visualizar"
+                                  Command="{Binding DataContext.VisualizarChamadoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                  CommandParameter="{Binding}"
+                                  Appearance="Secondary"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Width="100"
+                                  Height="32"
+                                  CornerRadius="8"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
-
-    </Grid>
+                    <DataGridTextColumn Header="Título" Binding="{Binding Titulo}" />
+                    <DataGridTextColumn Header="Cargo" Binding="{Binding Cargo}" />
+                    <DataGridTextColumn Header="Prioridade" Binding="{Binding Prioridade}" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                    <DataGridTextColumn Header="Responsável" Binding="{Binding Responsavel}" />
+                    <DataGridTextColumn Header="Abertura" Binding="{Binding DataAbertura, StringFormat=dd/MM/yyyy}" />
+                    <DataGridTextColumn Header="Fechamento" Binding="{Binding DataFechamento, StringFormat=dd/MM/yyyy}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </wpfui:Card>
+    </StackPanel>
 </Page>

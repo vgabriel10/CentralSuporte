@@ -3,6 +3,7 @@ using CentralSuporte.Entities;
 using CentralSuporte.Enums;
 using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
+using CentralSuporte.Views;
 
 namespace CentralSuporte.ViewModels
 {
@@ -11,6 +12,7 @@ namespace CentralSuporte.ViewModels
         public SalvarDetalhesChamadoCommand SalvarDetalhesChamadoCommand { get; }
         private readonly IChamadoRepository _chamadoRepository;
         private readonly IUsuarioRepository _usuarioRepository;
+        public Dictionary<string, Prioridade> ListaPrioridade { get; set; }
         public Dictionary<string, Status> ListaStatus { get; set; }
         public List<string> UsuariosSuporte { get; set; } = new List<string>();
         public VisualizarDetalhesChamadoViewModel(string idChamado)
@@ -18,6 +20,12 @@ namespace CentralSuporte.ViewModels
             SalvarDetalhesChamadoCommand = new SalvarDetalhesChamadoCommand(this);
             _chamadoRepository = new ChamadoRepository();
             _usuarioRepository = new UsuarioRepository();
+            ListaPrioridade = new Dictionary<string, Prioridade>
+            {
+                { "Alta", Prioridade.Alta },
+                { "Normal", Prioridade.Normal },
+                { "Baixa", Prioridade.Baixa },
+            };
             ListaStatus = new Dictionary<string, Status>
             {
                 { "Aberto", Status.Aberto },
@@ -60,6 +68,8 @@ namespace CentralSuporte.ViewModels
                     Chamado.DataFechamento = DateTime.Now;
                 await _chamadoRepository.EditarChamado(Chamado);
             }
+
+            MainWindow.Navegador.NavegarPara(new GerenciarChamado());
         }
 
     }

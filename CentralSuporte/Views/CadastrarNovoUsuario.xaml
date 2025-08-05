@@ -10,53 +10,72 @@
     xmlns:behaviors="clr-namespace:CentralSuporte.Behaviors"
     Title="Cadastrar Novo Usuário"
     Width="400"
-    Height="400"
-    WindowStartupLocation="CenterScreen">
+    Height="500"
+    WindowStartupLocation="CenterScreen"
+    ResizeMode="NoResize">
 
+    <Grid>
+        <Border
+            CornerRadius="12"
+            Padding="30"
+            Width="340"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
 
-    <Grid Margin="20" VerticalAlignment="Top">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
-        <!-- Nome -->
-        <StackPanel Grid.Row="0" Margin="0,0,0,10">
-            <TextBlock Text="Nome:" Margin="0,0,0,5" />
-            <ui:TextBox Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}">
-                <i:Interaction.Behaviors>
-                    <behaviors:BloquearEspacoBehavior />
-                </i:Interaction.Behaviors>
-            </ui:TextBox>
-        </StackPanel>
+                <TextBlock Text="Criar conta"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,10"/>
 
-        <!-- Senha -->
-        <StackPanel Grid.Row="1" Margin="0,0,0,10">
-            <TextBlock Text="Senha:" Margin="0,0,0,5" />
-            <PasswordBox
-            Height="40"
-            helpers:PasswordBoxHelper.BoundPassword="{Binding Senha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
+                <!-- Nome -->
+                <StackPanel>
+                    <TextBlock Text="Nome de usuário" FontSize="12" Margin="2,0,0,2"/>
+                    <ui:TextBox PlaceholderText="Digite o nome de usuário"
+                                Text="{Binding Nome, UpdateSourceTrigger=PropertyChanged}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:BloquearEspacoBehavior />
+                        </i:Interaction.Behaviors>
+                    </ui:TextBox>
+                </StackPanel>
 
-        <!-- Tipo de Usuário -->
-        <StackPanel Grid.Row="2" Margin="0 0 0 10">
-            <TextBlock Text="Tipo de Usuário:" />
-            <ComboBox Height="60" ItemsSource="{Binding TiposUsuarios}"
-                         SelectedItem="{Binding TipoUsuario}"/>
+                <!-- Senha -->
+                <StackPanel>
+                    <TextBlock Text="Senha" FontSize="12" Margin="2,0,0,2"/>
+                    <PasswordBox
+                        Height="40"
+                        helpers:PasswordBoxHelper.BoundPassword="{Binding Senha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
 
-        </StackPanel>
+                <!-- Nome -->
+                <StackPanel>
+                    <TextBlock Text="Cargo" FontSize="12" Margin="2,0,0,2"/>
+                    <ui:TextBox PlaceholderText="Digite o seu cargo"
+                    Text="{Binding Cargo, UpdateSourceTrigger=PropertyChanged}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:BloquearEspacoBehavior />
+                        </i:Interaction.Behaviors>
+                    </ui:TextBox>
+                </StackPanel>
 
+                <!-- Tipo de Usuário -->
+                <StackPanel>
+                    <TextBlock Text="Tipo de usuário" FontSize="12" Margin="2,0,0,2"/>
+                    <ComboBox ItemsSource="{Binding TiposUsuarios}"
+                                 SelectedItem="{Binding TipoUsuario}"
+                                 Height="40"/>
+                </StackPanel>
 
-
-        <!-- Botão -->
-        <ui:Button Grid.Row="4"
-                   Content="Cadastrar"
-                   Command="{Binding CriarUsuarioCommand}"
-                   Width="120"
-                   Margin="0,10,0,0"
-                   HorizontalAlignment="Center"/>
+                <!-- Botão -->
+                <ui:Button Content="Cadastrar"
+                           Command="{Binding CriarUsuarioCommand}"
+                           Appearance="Primary"
+                           Margin="0,10,0,0"
+                           Height="40"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

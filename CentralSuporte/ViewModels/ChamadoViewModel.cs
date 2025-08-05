@@ -141,7 +141,7 @@ namespace CentralSuporte.Models.ViewModels
 
         private async Task CarregarTodosChamados() 
         {
-            var chamados = await _chamadoRepository.ObterTodosChamadosAsync();
+            var chamados = await _chamadoRepository.ObterChamadosPorUsuarioAsync(SessaoService.IdUsuarioLogado);
             Chamados.Clear();
             chamados.ForEach(c => Chamados.Add(c));
         }

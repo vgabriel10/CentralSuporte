@@ -15,7 +15,10 @@ namespace CentralSuporte.Validators
             if (string.IsNullOrWhiteSpace(usuario.Senha))
                 erros.Add("Senha é obrigatória.");
 
-                return erros;
+            if (string.IsNullOrWhiteSpace(usuario.Cargo))
+                erros.Add("Cargo é obrigatório.");
+
+            return erros;
         }
     }
 }

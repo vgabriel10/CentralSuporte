@@ -51,7 +51,13 @@ namespace CentralSuporte.Repository
 
         public async Task<List<Chamado>> ObterTodosChamadosAsync()
         {
-            return await _chamadoDbContext.Find(Builders<Chamado>.Filter.Empty).ToListAsync();
+            //return await _chamadoDbContext.Find(Builders<Chamado>.Filter.Empty).ToListAsync();
+            var chamados = await _chamadoDbContext.Find(Builders<Chamado>.Filter.Empty).ToListAsync();
+            return chamados
+                .OrderByDescending(c => c.Status == Enums.Status.Aberto)
+                .ThenByDescending(c => c.Status == Enums.Status.Aberto ? c.Prioridade : Enums.Prioridade.Baixa)
+                .ToList();
+
         }
     }
 }

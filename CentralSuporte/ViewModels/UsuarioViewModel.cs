@@ -129,7 +129,9 @@ namespace CentralSuporte.ViewModels
                         .FirstOrDefault(w => w is Login)
                         ?.Close();
                 }
-               
+
+                SessaoService.IdUsuarioLogado = usuario.Id;
+                SessaoService.NomeUsuarioLogado = usuario.Nome;
                 switch (usuario.TipoUsuario)
                 {
                     case TipoUsuario.Usuario:
@@ -141,7 +143,6 @@ namespace CentralSuporte.ViewModels
                         SessaoService.TipoUsuarioLogado = TipoUsuario.Suporte;
                         break;
                 }
-                SessaoService.NomeUsuarioLogado = usuario.Nome;
             }
             else
             {
