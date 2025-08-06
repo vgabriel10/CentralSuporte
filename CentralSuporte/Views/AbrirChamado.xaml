@@ -30,22 +30,6 @@
                     <ui:TextBox Text="{Binding Cargo, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
-                <StackPanel>
-                    <TextBlock Text="Responsável:" FontWeight="Bold"/>
-                    <ComboBox ItemsSource="{Binding UsuariosSuporte}"
-                          SelectedValue="{Binding Responsavel, Mode=TwoWay}"
-                          Width="200"
-                          Margin="0 5"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Top"
-                          DisplayMemberPath="Nome"
-                          SelectedValuePath="Id">   
-                        <ComboBox.Style>
-                            <Style TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}" />
-                        </ComboBox.Style>
-                    </ComboBox>
-                </StackPanel>
-
                 <ui:Button Content="Abrir Chamado"
                            Command="{Binding AbrirChamadoCommand}"
                            Appearance="Primary"
