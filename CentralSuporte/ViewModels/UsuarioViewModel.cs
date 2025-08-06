@@ -20,7 +20,7 @@ namespace CentralSuporte.ViewModels
         public CriarUsuarioCommand CriarUsuarioCommand { get; }
         public FazerLoginCommand FazerLoginCommand { get; }
         public AbrirTelaCriarNovoUsuarioCommand AbrirTelaCriarNovoUsuarioCommand { get; }
-        private FecharAplicacaoCommand FecharAplicacaoCommand { get; }
+        public FecharAplicacaoCommand FecharAplicacaoCommand { get; }
         private readonly IUsuarioRepository _usuarioRepository;
         private CriarUsuarioValidator _criarUsuarioValidator;
         
