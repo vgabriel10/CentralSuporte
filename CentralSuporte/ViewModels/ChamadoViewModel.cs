@@ -148,19 +148,26 @@ namespace CentralSuporte.Models.ViewModels
 
         public async Task AbrirNovoChamado()
         {
-            var novoChamado = new Chamado
-            {
-                Titulo = this.Titulo,
-                Descricao = this.Descricao,
-                Cargo = this.Cargo,
-                Usuario = SessaoService.NomeUsuarioLogado,
-                UsuarioId = SessaoService.IdUsuarioLogado,
-                Prioridade = this.Prioridade,
-                Status = this.Status,
-                Responsavel = null,
-                DataAbertura = this.DataAbertura,
-                DataFechamento = this.DataFechamento
-            };
+            //var novoChamado = new Chamado
+            //{
+            //    Titulo = this.Titulo,
+            //    Descricao = this.Descricao,
+            //    Cargo = this.Cargo,
+            //    Usuario = SessaoService.NomeUsuarioLogado,
+            //    UsuarioId = SessaoService.IdUsuarioLogado,
+            //    Prioridade = this.Prioridade,
+            //    Status = this.Status,
+            //    Responsavel = null,
+            //    DataAbertura = this.DataAbertura,
+            //    DataFechamento = this.DataFechamento
+            //};
+            var novoChamado = new Chamado(
+                Titulo,
+                Descricao,
+                Cargo,
+                SessaoService.IdUsuarioLogado,
+                SessaoService.NomeUsuarioLogado
+            );
             _abrirChamadoValidator.Validar(novoChamado);
             var erros = _abrirChamadoValidator.Validar(novoChamado);
             if (erros.Any())

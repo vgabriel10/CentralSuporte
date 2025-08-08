@@ -27,7 +27,10 @@
                        FontWeight="Bold" />
                 <ComboBox Grid.Column="1"
                           Width="160"
-                          VerticalAlignment="Center"/>
+                          VerticalAlignment="Center"
+                          ItemsSource="{Binding Responsaveis}"
+                          SelectedItem="{Binding ResponsavelSelecionado, Mode=TwoWay}"
+                          DisplayMemberPath="Nome"/>
 
                 <Label Grid.Column="2"
                        Content="Status"
@@ -38,6 +41,9 @@
                           Width="160"
                           VerticalAlignment="Center"
                           ItemsSource="{Binding CbStatus}"
+                          SelectedValuePath="Valor"
+                          DisplayMemberPath="Nome"
+                          SelectedValue="{Binding StatusSelecionado, Mode=TwoWay}"
                           SelectedIndex="0"/>
             </Grid>
         </wpfui:Card>

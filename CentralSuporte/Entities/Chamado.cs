@@ -22,5 +22,16 @@ namespace CentralSuporte.Entities
         public string ResponsavelId { get; set; } = string.Empty;
         public DateTime DataAbertura { get; set; } = DateTime.Now;
         public DateTime? DataFechamento { get; set; }
+
+        public Chamado(string titulo, string descricao, string cargo, string usuarioId, string usuario)
+        {
+            Titulo = titulo;
+            Descricao = descricao;
+            Cargo = cargo;
+            UsuarioId = usuarioId;
+            Usuario = usuario;
+            DataAbertura = DateTime.Now;
+            Status = Status.Aberto;
+        }
     }
 }

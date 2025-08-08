@@ -58,10 +58,12 @@
 
                 <TextBlock Text="Responsável:" FontWeight="Bold" Grid.Row="4" Grid.Column="0" Margin="0 6"/>
                 <ComboBox ItemsSource="{Binding UsuariosSuporte}"
-                          SelectedValue="{Binding Chamado.Responsavel, Mode=TwoWay}"
+                          SelectedValuePath="Id"
+                          DisplayMemberPath="Nome"
+                          SelectedValue="{Binding Chamado.ResponsavelId, Mode=TwoWay}"
                           Grid.Row="4" Grid.Column="1"
                           Margin="0,0,170,0"
-                          Width="200"/>
+                          Width="200"/> 
 
                 <TextBlock Text="Descrição:" FontWeight="Bold" Grid.Row="5" Grid.Column="0" Margin="0 6" VerticalAlignment="Top"/>
                 <TextBox Grid.Row="5" Grid.Column="1"

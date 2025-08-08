@@ -14,7 +14,8 @@ namespace CentralSuporte.ViewModels
         private readonly IUsuarioRepository _usuarioRepository;
         public Dictionary<string, Prioridade> ListaPrioridade { get; set; }
         public Dictionary<string, Status> ListaStatus { get; set; }
-        public List<string> UsuariosSuporte { get; set; } = new List<string>();
+        //public List<string> UsuariosSuporte { get; set; } = new List<string>();
+        public List<Usuario> UsuariosSuporte { get; set; } = new();
         public VisualizarDetalhesChamadoViewModel(string idChamado)
         {
             SalvarDetalhesChamadoCommand = new SalvarDetalhesChamadoCommand(this);
@@ -56,8 +57,8 @@ namespace CentralSuporte.ViewModels
         private async Task ObterTodosUsuariosSuporte()
         {
             var usuariosSuporte = await _usuarioRepository.ObterTodosUsuariosSuporte();
-            if(usuariosSuporte != null)
-                usuariosSuporte.ForEach(u => UsuariosSuporte.Add(u.Nome));
+            if (usuariosSuporte != null)
+                UsuariosSuporte.AddRange(usuariosSuporte);
         }
 
         public async Task SalvarAlteracoesChamado()
