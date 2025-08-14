@@ -9,8 +9,8 @@ using CentralSuporte.Validators;
 using CentralSuporte.ViewModels;
 using CentralSuporte.Views;
 using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Input;
+using Wpf.Ui;
+using Wpf.Ui.Controls;
 
 namespace CentralSuporte.Models.ViewModels
 {
@@ -21,6 +21,7 @@ namespace CentralSuporte.Models.ViewModels
         public AbrirTelaCriarNovoChamadoCommand AbrirTelaCriarNovoChamadoCommand { get; }
         private readonly IChamadoRepository _chamadoRepository;
         private readonly AbrirChamadoValidator _abrirChamadoValidator = new AbrirChamadoValidator();
+        public ISnackbarService SnackbarService { get; set; }
 
         public ChamadoViewModel()
         {
@@ -29,9 +30,11 @@ namespace CentralSuporte.Models.ViewModels
             AbrirTelaCriarNovoChamadoCommand = new AbrirTelaCriarNovoChamadoCommand(this);
             _chamadoRepository = new ChamadoRepository();
             _abrirChamadoValidator = new AbrirChamadoValidator();
+            SnackbarService = new SnackbarService();
+            if (AlertaService.AlertaPendente)
+                MainWindowViewModel.ExibirAlertaPendente();
             CarregarTodosChamados();
         }
-
 
         private string _titulo;
         public string Titulo
@@ -148,19 +151,6 @@ namespace CentralSuporte.Models.ViewModels
 
         public async Task AbrirNovoChamado()
         {
-            //var novoChamado = new Chamado
-            //{
-            //    Titulo = this.Titulo,
-            //    Descricao = this.Descricao,
-            //    Cargo = this.Cargo,
-            //    Usuario = SessaoService.NomeUsuarioLogado,
-            //    UsuarioId = SessaoService.IdUsuarioLogado,
-            //    Prioridade = this.Prioridade,
-            //    Status = this.Status,
-            //    Responsavel = null,
-            //    DataAbertura = this.DataAbertura,
-            //    DataFechamento = this.DataFechamento
-            //};
             var novoChamado = new Chamado(
                 Titulo,
                 Descricao,
@@ -172,12 +162,11 @@ namespace CentralSuporte.Models.ViewModels
             var erros = _abrirChamadoValidator.Validar(novoChamado);
             if (erros.Any())
             {
-                MessageBox.Show(string.Join(Environment.NewLine, erros), "Atenção!");
+                ErroAoAbrirChamado(erros);
                 return;
             }
 
             Chamados.Add(novoChamado);
-
             await _chamadoRepository.AbrirChamadoAsync(novoChamado);
 
             // Limpa os campos
@@ -187,8 +176,20 @@ namespace CentralSuporte.Models.ViewModels
             Responsavel = string.Empty;
             DataFechamento = null;
 
-            MainWindow.Navegador.NavegarPara(new VisualizarChamados());
+            AlertaService.RegistrarAlertaPendente("Sucesso!",
+                "Chamado aberto com sucesso!",
+                TimeSpan.FromSeconds(6),
+                ControlAppearance.Success,
+                new SymbolIcon(SymbolRegular.Circle12)
+                );
+
+            MainWindow.Navegador.NavegarPara(new VisualizarChamados());          
         }
 
+        private void ErroAoAbrirChamado(List<string> erros)
+        {
+            var mensagem = "Erro ao tentar abrir chamado!\n" + string.Join("\n", erros);
+            MainWindowViewModel.ExibirAlerta("Erro",mensagem, TimeSpan.FromSeconds(6),ControlAppearance.Danger,new SymbolIcon(SymbolRegular.ErrorCircle24));
+        }       
     }
 }

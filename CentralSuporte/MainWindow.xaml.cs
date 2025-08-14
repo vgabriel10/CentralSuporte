@@ -28,13 +28,13 @@ namespace CentralSuporte;
 public partial class MainWindow : Window
 {
     public static INavigationService Navegador;
+    private readonly MainWindowViewModel _viewModel;
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = new MainWindowViewModel();
+        _viewModel = new MainWindowViewModel();
+        DataContext = _viewModel;
         Navegador = new NavigationService(main);
-        //main.Content = new Login();
-
+        MainWindowViewModel.SnackbarService.SetSnackbarPresenter(SnackbarPresenter);
     }
-
 }

@@ -21,7 +21,6 @@ namespace CentralSuporte.Views
     /// </summary>
     public partial class CadastrarNovoUsuario : Window
     {
-        
         public CadastrarNovoUsuario()
         {
             InitializeComponent();

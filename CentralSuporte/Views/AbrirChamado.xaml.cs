@@ -8,10 +8,12 @@ namespace CentralSuporte.Views
     /// </summary>
     public partial class AbrirChamado : Page
     {
+        private readonly ChamadoViewModel _viewModel;
         public AbrirChamado()
         {
             InitializeComponent();
-            DataContext = new ChamadoViewModel();
+            _viewModel = new ChamadoViewModel();
+            DataContext = _viewModel;
         }
     }
 }
