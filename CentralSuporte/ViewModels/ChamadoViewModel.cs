@@ -188,8 +188,8 @@ namespace CentralSuporte.Models.ViewModels
 
         private void ErroAoAbrirChamado(List<string> erros)
         {
-            var mensagem = "Erro ao tentar abrir chamado!\n" + string.Join("\n", erros);
-            MainWindowViewModel.ExibirAlerta("Erro",mensagem, TimeSpan.FromSeconds(6),ControlAppearance.Danger,new SymbolIcon(SymbolRegular.ErrorCircle24));
+            var mensagem = string.Join("\n", erros);
+            MainWindowViewModel.ExibirAlerta("Erro ao tentar abrir chamado!", mensagem, TimeSpan.FromSeconds(6),ControlAppearance.Danger,new SymbolIcon(SymbolRegular.ErrorCircle24));
         }       
     }
 }
