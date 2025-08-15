@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Title="MainWindow" MinHeight="500" Width="800"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized">
 
     <Grid>
         <Grid.RowDefinitions>

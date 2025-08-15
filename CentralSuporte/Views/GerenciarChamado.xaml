@@ -8,10 +8,13 @@
       mc:Ignorable="d" 
       Title="GerenciarChamado">
 
-    <StackPanel Margin="20" HorizontalAlignment="Stretch">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <!-- Filtros -->
-        <wpfui:Card Padding="10" Margin="0,0,0,10">
+        <wpfui:Card Padding="10" Margin="0,0,0,10" Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -48,8 +51,7 @@
             </Grid>
         </wpfui:Card>
 
-        <!-- Tabela -->
-        <wpfui:Card Padding="10">
+        <wpfui:Card Padding="10" Grid.Row="1">
             <DataGrid ItemsSource="{Binding Chamados}"
                       SelectedItem="{Binding ChamadoSelecionado, Mode=TwoWay}"
                       AutoGenerateColumns="False"
@@ -61,7 +63,9 @@
                       AlternatingRowBackground="LightGray"
                       BorderThickness="0"
                       HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch">
+                      VerticalAlignment="Stretch"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Ações">
                         <DataGridTemplateColumn.CellTemplate>
@@ -89,5 +93,5 @@
                 </DataGrid.Columns>
             </DataGrid>
         </wpfui:Card>
-    </StackPanel>
+    </Grid>
 </Page>

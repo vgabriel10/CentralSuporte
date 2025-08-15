@@ -9,7 +9,14 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       Title="VisualizarChamados">
 
-    <StackPanel Margin="20" HorizontalAlignment="Stretch">
+    <!-- Troquei StackPanel por Grid -->
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Botão -->
+            <RowDefinition Height="*"/>
+            <!-- DataGrid preenche o restante -->
+        </Grid.RowDefinitions>
 
         <!-- Botão -->
         <wpfui:Button Content="Abrir Chamado"
@@ -20,64 +27,35 @@
                       Appearance="Primary"
                       Margin="0,0,0,10" />
 
-        <!-- Grade com os chamados -->
-        <wpfui:Card Padding="10">
-            <Grid>
-                <!--<DataGrid x:Name="dgvChamados"
-                  ItemsSource="{Binding Chamados}"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  Margin="0"
-                  HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
-                  GridLinesVisibility="None"
-                  HeadersVisibility="Column"
-                  RowHeaderWidth="0"
-                  SelectionMode="Single"
-                  SelectionUnit="FullRow"
-                  AlternatingRowBackground="LightGray"
-                  BorderThickness="0">
-
+        <!-- Card com DataGrid -->
+        <wpfui:Card Grid.Row="1" Padding="10">
+            <DataGrid x:Name="dgvChamados"
+                      ItemsSource="{Binding Chamados}" 
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      Margin="0"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      GridLinesVisibility="None"
+                      HeadersVisibility="Column"
+                      RowHeaderWidth="0"
+                      AlternatingRowBackground="LightGray"
+                      BorderThickness="0"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                <DataGrid.Columns>
                     <DataGridTextColumn Header="Título" Binding="{Binding Titulo}" />
                     <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" />
                     <DataGridTextColumn Header="Cargo" Binding="{Binding Cargo}" />
+                    <DataGridTextColumn Header="Usuário" Binding="{Binding Usuario}" />
                     <DataGridTextColumn Header="Prioridade" Binding="{Binding Prioridade}" />
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
-                    <DataGridTextColumn Header="Usuário" Binding="{Binding Usuario}" />
                     <DataGridTextColumn Header="Responsável" Binding="{Binding Responsavel}" />
                     <DataGridTextColumn Header="Data Abertura" Binding="{Binding DataAbertura, StringFormat=dd/MM/yyyy HH:mm}" />
                     <DataGridTextColumn Header="Data Fechamento" Binding="{Binding DataFechamento, StringFormat=dd/MM/yyyy HH:mm}" />
-                </DataGrid>-->
-
-                <DataGrid x:Name="dgvChamados"
-                  ItemsSource="{Binding Chamados}" 
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  SelectionMode="Single"
-                  Margin="0"
-                  HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
-                  GridLinesVisibility="None"
-                  HeadersVisibility="Column"
-                  RowHeaderWidth="0"
-                  AlternatingRowBackground="LightGray"
-                  BorderThickness="0">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Título" Binding="{Binding Titulo}" />
-                        <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" />
-                        <DataGridTextColumn Header="Cargo" Binding="{Binding Cargo}" />
-                        <DataGridTextColumn Header="Usuário" Binding="{Binding Usuario}" />
-                        <DataGridTextColumn Header="Prioridade" Binding="{Binding Prioridade}" />
-                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
-                        <DataGridTextColumn Header="Responsável" Binding="{Binding Responsavel}" />
-                        <DataGridTextColumn Header="Data Abertura" Binding="{Binding DataAbertura, StringFormat=dd/MM/yyyy HH:mm}" />
-                        <DataGridTextColumn Header="Data Fechamento" Binding="{Binding DataFechamento, StringFormat=dd/MM/yyyy HH:mm}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-
-
-
-            </Grid>
+                </DataGrid.Columns>
+            </DataGrid>
         </wpfui:Card>
-    </StackPanel>
+    </Grid>
 </Page>
