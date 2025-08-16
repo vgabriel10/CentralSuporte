@@ -91,32 +91,6 @@ namespace CentralSuporte.ViewModels
             }
         }
 
-        //private Status _status;
-        //public Status Status
-        //{
-        //    get => _status;
-        //    set
-        //    {
-        //        _status = value;
-        //        OnPropertyChanged(nameof(Status));
-        //    }
-        //}
-
-        //private string _responsavel;
-        //public string Responsavel
-        //{
-        //    get => _responsavel;
-        //    set
-        //    {
-        //        if (_responsavel != value)
-        //        {
-        //            _responsavel = value;
-        //            OnPropertyChanged(nameof(Responsavel));
-        //            AbrirChamadoCommand.RaiseCanExecuteChanged();
-        //        }
-        //    }
-        //}
-
         private DateTime _dataAbertura = DateTime.Now;
         public DateTime DataAbertura
         {

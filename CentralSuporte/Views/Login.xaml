@@ -7,6 +7,7 @@
     xmlns:behaviors="clr-namespace:CentralSuporte.Behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helpers="clr-namespace:CentralSuporte.Helpers"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     mc:Ignorable="d"
     Title="Login"
     MaxHeight="700"
@@ -18,7 +19,6 @@
 
     <Grid>
 
-        <!-- Botão de fechar -->
         <Button Content="✕"
                 Width="30"
                 Height="30"
@@ -50,7 +50,6 @@
                            HorizontalAlignment="Center"
                            Margin="0,0,0,20" />
 
-                <!-- Nome do Usuário -->
                 <StackPanel Margin="0,10,0,0">
                     <Label Content="Nome de usuário" Foreground="#555" />
                     <TextBox x:Name="txtNomeUsuario"
@@ -68,7 +67,6 @@
                     </TextBox>
                 </StackPanel>
 
-                <!-- Senha -->
                 <StackPanel Margin="0,10,0,0">
                     <Label Content="Senha" Foreground="#555" />
                     <PasswordBox
@@ -81,7 +79,6 @@
                         helpers:PasswordBoxHelper.BoundPassword="{Binding Senha, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
-                <!-- Botão Entrar -->
                 <Button x:Name="btnCadastrarUsuario"
                         Content="Entrar"
                         Command="{Binding FazerLoginCommand}"
@@ -94,7 +91,6 @@
                         Cursor="Hand"
                         BorderThickness="0" />
 
-                <!-- Criar Conta -->
                 <Button x:Name="btnCriarConta"
                         Content="Criar conta"
                         Command="{Binding AbrirTelaCriarNovoUsuarioCommand}"
@@ -106,5 +102,7 @@
                         Margin="0,10,0,0" />
             </StackPanel>
         </Border>
+
+        <ui:SnackbarPresenter x:Name="SnackbarPresenter"/>
     </Grid>
 </Window>

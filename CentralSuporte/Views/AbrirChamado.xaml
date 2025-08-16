@@ -38,13 +38,5 @@
                            Width="150"/>
             </StackPanel>
         </ui:Card>
-
-        <!--<ui:SnackbarPresenter x:Name="SnackbarArea"
-                         VerticalAlignment="Bottom"
-                         HorizontalAlignment="Right"
-                         Margin="0 0 20 20" />-->
-
-        <!--<ContentPresenter x:Name="RootContentDialog"/>-->
-
     </Grid>
 </Page>

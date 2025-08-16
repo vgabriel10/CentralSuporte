@@ -3,15 +3,10 @@ using CentralSuporte.Repository;
 using CentralSuporte.Repository.Interface;
 using CentralSuporte.Views;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 
 namespace CentralSuporte;
 
-/// <summary>
-/// Interaction logic for App.xaml
-/// </summary>
 public partial class App : Application
 {
     public static ServiceProvider ServiceProvider { get; private set; }
@@ -19,11 +14,7 @@ public partial class App : Application
     {
         var serviceCollection = new ServiceCollection();
         ConfigureServices(serviceCollection);
-
         ServiceProvider = serviceCollection.BuildServiceProvider();
-
-        //var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-        //mainWindow.Show();
         var loginWindow = ServiceProvider.GetRequiredService<Login>();
         loginWindow.Show();
     }

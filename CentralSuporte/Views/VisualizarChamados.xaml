@@ -9,16 +9,12 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       Title="VisualizarChamados">
 
-    <!-- Troquei StackPanel por Grid -->
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Botão -->
             <RowDefinition Height="*"/>
-            <!-- DataGrid preenche o restante -->
         </Grid.RowDefinitions>
 
-        <!-- Botão -->
         <wpfui:Button Content="Abrir Chamado"
                       Command="{Binding AbrirTelaCriarNovoChamadoCommand}"
                       Width="160"
@@ -27,7 +23,6 @@
                       Appearance="Primary"
                       Margin="0,0,0,10" />
 
-        <!-- Card com DataGrid -->
         <wpfui:Card Grid.Row="1" Padding="10">
             <DataGrid x:Name="dgvChamados"
                       ItemsSource="{Binding Chamados}" 

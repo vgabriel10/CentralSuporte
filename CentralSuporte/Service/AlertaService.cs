@@ -13,6 +13,7 @@ namespace CentralSuporte.Service
         public static TimeSpan Tempo { get; set; }
         public static ControlAppearance Aparencia { get; set; }
         public static SymbolIcon Icone { get; set; }
+
         public static void RegistrarAlertaPendente(string titulo, string mensagem, TimeSpan tempo, ControlAppearance aparencia, SymbolIcon icone)
         {
             AlertaPendente = true;
@@ -21,14 +22,16 @@ namespace CentralSuporte.Service
             Tempo = tempo;
             Aparencia = aparencia;
             Icone = icone;
+        }
 
-            //MainWindowViewModel.SnackbarService.Show(
-            //    titulo,
-            //    mensagem,
-            //    aparencia,
-            //    icone,
-            //    tempo
-            //);
+        public static void LimparAlertaPendente()
+        {
+            AlertaPendente = false;
+            Titulo = string.Empty;
+            Mensagem = string.Empty;
+            Tempo = TimeSpan.Zero;
+            Aparencia = ControlAppearance.Transparent;
+            Icone = null;
         }
     }
 }

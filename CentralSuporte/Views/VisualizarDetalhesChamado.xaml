@@ -38,7 +38,7 @@
                 <TextBlock Text="{Binding Chamado.Cargo}" Grid.Row="1" Grid.Column="1" Margin="0 6"/>
 
                 <TextBlock Text="Prioridade:" FontWeight="Bold" Grid.Row="2" Grid.Column="0" Margin="0 6"/>
-                <!--<TextBlock Text="{Binding Chamado.Prioridade}" Grid.Row="2" Grid.Column="1" Margin="0 6"/>-->
+               
                 <ComboBox ItemsSource="{Binding ListaPrioridade}"
                           DisplayMemberPath="Key"
                           SelectedValuePath="Value"

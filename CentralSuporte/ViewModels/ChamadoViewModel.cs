@@ -110,7 +110,6 @@ namespace CentralSuporte.Models.ViewModels
                 {
                     _responsavel = value;
                     OnPropertyChanged(nameof(Responsavel));
-                    //AbrirChamadoCommand.RaiseCanExecuteChanged();
                 }
             }
         }

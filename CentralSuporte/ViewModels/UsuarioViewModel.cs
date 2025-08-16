@@ -1,7 +1,4 @@
-﻿
-
-using CentralSuporte.Commands.ChamadoCommands;
-using CentralSuporte.Commands.MenuNavegacaoCommands;
+﻿using CentralSuporte.Commands.MenuNavegacaoCommands;
 using CentralSuporte.Commands.UsuarioCommands;
 using CentralSuporte.Entities;
 using CentralSuporte.Enums;
@@ -10,8 +7,9 @@ using CentralSuporte.Repository.Interface;
 using CentralSuporte.Service;
 using CentralSuporte.Validators;
 using CentralSuporte.Views;
-using System.ComponentModel;
 using System.Windows;
+using Wpf.Ui;
+using Wpf.Ui.Controls;
 
 namespace CentralSuporte.ViewModels
 {
@@ -23,7 +21,8 @@ namespace CentralSuporte.ViewModels
         public FecharAplicacaoCommand FecharAplicacaoCommand { get; }
         private readonly IUsuarioRepository _usuarioRepository;
         private CriarUsuarioValidator _criarUsuarioValidator;
-        
+        public static ISnackbarService SnackbarService { get; set; }
+
         public UsuarioViewModel()
         {
             _usuarioRepository = new UsuarioRepository();
@@ -32,6 +31,8 @@ namespace CentralSuporte.ViewModels
             AbrirTelaCriarNovoUsuarioCommand = new AbrirTelaCriarNovoUsuarioCommand();
             FecharAplicacaoCommand = new FecharAplicacaoCommand();
             _criarUsuarioValidator = new CriarUsuarioValidator();
+            if(SnackbarService?.GetSnackbarPresenter() == null)
+                SnackbarService = new SnackbarService();
         }
         private string _nome;
         public string Nome 
@@ -43,7 +44,6 @@ namespace CentralSuporte.ViewModels
                 {
                     _nome = value;
                     OnPropertyChanged(nameof(Nome));
-                    //FazerLoginCommand.RaiseCanExecuteChanged();
                 }
             } 
         }
@@ -58,7 +58,20 @@ namespace CentralSuporte.ViewModels
                 {
                     _senha = value;
                     OnPropertyChanged(nameof(Senha));
-                    //FazerLoginCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        private string _cargo;
+        public string Cargo
+        {
+            get => _cargo;
+            set
+            {
+                if (_cargo != value)
+                {
+                    _cargo = value;
+                    OnPropertyChanged(nameof(Cargo));
                 }
             }
         }
@@ -86,24 +99,31 @@ namespace CentralSuporte.ViewModels
             {
                 Nome = this.Nome,
                 Senha = this.Senha,
+                Cargo = this.Cargo,
                 TipoUsuario = this.TipoUsuario
             };
 
             var erros = _criarUsuarioValidator.Validar(usuario);
             if(erros.Any())
             {
-                MessageBox.Show(string.Join(Environment.NewLine, erros), "Atenção!");
+                ExibirAlerta("Erro ao criar usuário!",
+                    string.Join("\n", erros),
+                    TimeSpan.FromSeconds(6),
+                    ControlAppearance.Danger,
+                    new SymbolIcon(SymbolRegular.ErrorCircle24));
                 return;
             }
-
             await _usuarioRepository.AdicionarUsuarioAsync(usuario);
-
-            MessageBox.Show($"Usuário {usuario.Nome} criado com sucesso", "Sucesso!");
-
             Application.Current.Windows
                         .OfType<Window>()
                         .FirstOrDefault(w => w is CadastrarNovoUsuario)
                         ?.Close();
+
+            ExibirAlerta($"Usuário {usuario.Nome} criado com sucesso",
+                "Sucesso!",
+                TimeSpan.FromSeconds(4),
+                ControlAppearance.Success,
+                new SymbolIcon(SymbolRegular.Circle12));
         }
 
         public async void FazerLogin()
@@ -146,9 +166,23 @@ namespace CentralSuporte.ViewModels
             }
             else
             {
-                MessageBox.Show("Usuário ou senha inválidos","Atenção!");
+                ExibirAlerta("Erro ao fazer login!",
+                    "Usuário ou senha inválidos.",
+                    TimeSpan.FromSeconds(6),
+                    ControlAppearance.Danger,
+                    new SymbolIcon(SymbolRegular.ErrorCircle24));
             }
         }
 
+        public static void ExibirAlerta(string titulo, string mensagem, TimeSpan tempo, ControlAppearance aparencia, SymbolIcon icone)
+        {
+            SnackbarService.Show(
+                    titulo,
+                    mensagem,
+                    aparencia,
+                    icone,
+                    tempo
+            );
+        }
     }
 }
