@@ -52,21 +52,22 @@
         </wpfui:Card>
 
         <wpfui:Card Padding="10" Grid.Row="1">
-            <DataGrid ItemsSource="{Binding Chamados}"
-                      SelectedItem="{Binding ChamadoSelecionado, Mode=TwoWay}"
-                      AutoGenerateColumns="False"
-                      SelectionMode="Single"
-                      IsReadOnly="True"
-                      GridLinesVisibility="None"
-                      HeadersVisibility="Column"
-                      RowHeaderWidth="0"
-                      AlternatingRowBackground="LightGray"
-                      BorderThickness="0"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Stretch"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto"
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                <DataGrid.Columns>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <DataGrid ItemsSource="{Binding Chamados}"
+                  SelectedItem="{Binding ChamadoSelecionado, Mode=TwoWay}"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  IsReadOnly="True"
+                  GridLinesVisibility="None"
+                  HeadersVisibility="Column"
+                  RowHeaderWidth="0"
+                  AlternatingRowBackground="LightGray"
+                  BorderThickness="0"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.CanContentScroll="True"
+                  Height="600">
+                    <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Ações">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -92,6 +93,7 @@
                     <DataGridTextColumn Header="Fechamento" Binding="{Binding DataFechamento, StringFormat=dd/MM/yyyy}" />
                 </DataGrid.Columns>
             </DataGrid>
+            </ScrollViewer>
         </wpfui:Card>
     </Grid>
 </Page>
