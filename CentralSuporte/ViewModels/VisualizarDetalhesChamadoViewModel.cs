@@ -67,6 +67,8 @@ namespace CentralSuporte.ViewModels
             {
                 if (Chamado.Status == Status.Resolvido)
                     Chamado.DataFechamento = DateTime.Now;
+                if (!string.IsNullOrEmpty(Chamado.ResponsavelId))
+                    Chamado.Responsavel = UsuariosSuporte.FirstOrDefault(u => u.Id == Chamado.ResponsavelId)?.Nome ?? string.Empty;
                 await _chamadoRepository.EditarChamado(Chamado);
             }
 

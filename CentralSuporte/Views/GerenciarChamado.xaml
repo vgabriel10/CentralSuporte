@@ -52,34 +52,34 @@
         </wpfui:Card>
 
         <wpfui:Card Padding="10" Grid.Row="1">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <DataGrid ItemsSource="{Binding Chamados}"
-                  SelectedItem="{Binding ChamadoSelecionado, Mode=TwoWay}"
-                  AutoGenerateColumns="False"
-                  SelectionMode="Single"
-                  IsReadOnly="True"
-                  GridLinesVisibility="None"
-                  HeadersVisibility="Column"
-                  RowHeaderWidth="0"
-                  AlternatingRowBackground="LightGray"
-                  BorderThickness="0"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ScrollViewer.CanContentScroll="True"
-                  Height="600">
-                    <DataGrid.Columns>
+            <DataGrid ItemsSource="{Binding Chamados}"
+                      AutoGenerateColumns="False"
+                      SelectionMode="Single"
+                      IsReadOnly="True"
+                      GridLinesVisibility="None"
+                      HeadersVisibility="Column"
+                      RowHeaderWidth="0"
+                      AlternatingRowBackground="LightGray"
+                      BorderThickness="0"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.CanContentScroll="True"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch"
+                      MinHeight="1200">
+                <DataGrid.Columns>
                     <DataGridTemplateColumn Header="Ações">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <wpfui:Button Content="Visualizar"
-                                  Command="{Binding DataContext.VisualizarChamadoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
-                                  CommandParameter="{Binding}"
-                                  Appearance="Secondary"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  Width="100"
-                                  Height="32"
-                                  CornerRadius="8"/>
+                                              Command="{Binding DataContext.VisualizarChamadoCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                              CommandParameter="{Binding}"
+                                              Appearance="Secondary"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Width="100"
+                                              Height="32"
+                                              CornerRadius="8"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -93,7 +93,6 @@
                     <DataGridTextColumn Header="Fechamento" Binding="{Binding DataFechamento, StringFormat=dd/MM/yyyy}" />
                 </DataGrid.Columns>
             </DataGrid>
-            </ScrollViewer>
         </wpfui:Card>
     </Grid>
 </Page>

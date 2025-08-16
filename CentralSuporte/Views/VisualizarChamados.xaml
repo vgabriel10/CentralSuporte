@@ -32,13 +32,15 @@
                       Margin="0"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
+                      MinHeight="1200"
                       GridLinesVisibility="None"
                       HeadersVisibility="Column"
                       RowHeaderWidth="0"
                       AlternatingRowBackground="LightGray"
                       BorderThickness="0"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
-                      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.CanContentScroll="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Título" Binding="{Binding Titulo}" />
                     <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" />
