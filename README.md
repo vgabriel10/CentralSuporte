@@ -1,3 +1,47 @@
+# 📑 Sumário
+
+- [Objetivo da aplicação](#objetivo-da-aplicação)
+- [Como Rodar](#como-rodar)
+- [Como gerar o instalador](#-automatização-de-build-e-instalador-com-github-actions)
+- [Padrões utilizados](#padrões-utilizados)
+- [Bibliotecas utilizadas](#-bibliotecas-utilizadas)
+
+## 🎯 Objetivo da aplicação
+
+A **Central de Suporte** é uma aplicação desktop desenvolvida em **WPF** para o gerenciamento de atendimentos de chamados.  
+Ela foi projetada para atender tanto os usuários que abrem chamados quanto a equipe de suporte responsável pela resolução, funcionando como uma ponte eficiente entre solicitante e atendente.  
+
+Seu objetivo é simplificar o processo de comunicação, acompanhamento e conclusão de chamados, garantindo maior agilidade e organização no suporte.
+
+## ▶️ Como Rodar
+
+Para executar a aplicação, é recomendado utilizar o **Visual Studio 2022** e o **Docker**.  
+
+1. Certifique-se de que o **Docker Desktop** esteja instalado e em execução.  
+2. Acesse o diretório raiz da aplicação pelo terminal.  
+3. Rode o comando abaixo para instanciar o **MongoDB** localmente:  
+
+```bash
+docker-compose up
+```
+
+## 🛠️ Padrões utilizados
+
+A aplicação segue padrões e boas práticas para organizar o código e facilitar a manutenção:
+
+- **MVVM**: Separação entre interface, lógica de apresentação e dados.  
+- **Services**: Contém a lógica de negócio da aplicação.  
+- **Repository**: Responsável pelo acesso e manipulação dos dados no banco.  
+- **Validator**: Valida os dados antes de serem processados ou persistidos.   
+
+### Bibliotecas utilizadas
+
+- **Microsoft.Xaml.Behaviors.Wpf**: Permite criar **Behaviors** reutilizáveis para a interface WPF.  
+- **MongoDB.Driver**: Driver oficial do MongoDB para .NET, usado para comunicação com o banco.  
+- **WPF-UI**: Biblioteca para melhorar a aparência da interface do usuário, proporcionando componentes e estilos prontos para WPF.
+
+
+
 # 🔧 Automatização de Build e Instalador com GitHub Actions
 
 Este projeto utiliza **GitHub Actions** para compilar a aplicação WPF em .NET 8 e gerar automaticamente um instalador `.exe` usando o **Inno Setup**, sempre que um `push` for feito na branch `master`.
