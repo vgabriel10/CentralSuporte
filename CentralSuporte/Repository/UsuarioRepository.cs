@@ -2,6 +2,7 @@
 using CentralSuporte.Persistence.Data;
 using CentralSuporte.Repository.Interface;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 
@@ -25,7 +26,9 @@ namespace CentralSuporte.Repository
 
         public async Task<Usuario> FazerLogin(Usuario usuario)
         {
-            var filtro = Builders<Usuario>.Filter.Where(u => u.Nome == usuario.Nome && u.Senha == usuario.Senha);
+            var filtro = Builders<Usuario>.Filter.Regex(u => u.Nome, new BsonRegularExpression($"^{usuario.Nome}$", "i")) &
+                         Builders<Usuario>.Filter.Eq(u => u.Senha, usuario.Senha);
+
             var existeUsuario = await _usuario.Find(filtro).FirstOrDefaultAsync();
             return existeUsuario;
         }
